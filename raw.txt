@@ -25,6 +25,16 @@ points:
           from: =colrow
           to: =row_net
         anchor:
+          shift: [-8, -3.5]
+          rotate: 90
+      rgb:
+        type: rgb
+        nets:
+          din: P01
+          dout: D1
+          VCC: VCC
+          GND: GND
+        anchor:
           shift: [0, -5]
   zones:
     board:
@@ -277,20 +287,20 @@ pcbs:
         type: via
         anchor:
           ref: board_inside_top
-          shift: [-18,-2]
+          shift: [-18,-25.9678]
         nets:
           net: RAW
       via4:
         type: via
         anchor:
           ref: board_inside_top
-          shift: [-18,-12]
+          shift: [-18,-18.348]
         nets:
-          net: pos
+          net: VCC
       via5:
         type: via
         anchor:
           ref: board_inside_top
-          shift: [-18,-22]
+          shift: [-18,-23.431]
         nets:
           net: GND
