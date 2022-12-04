@@ -153,8 +153,10 @@ points:
           row_overrides:
             tbottom:
               column_net: P15
+              rotate: 90
             tmid:
               column_net: P18
+              rotate: 90
               shift: [cx/2 + 0.5,0]
               bind: [10.5,0]
               tags:
@@ -162,6 +164,7 @@ points:
                 2u: true
             ttop:
               column_net: P19
+              rotate: 90
               shift: [cx/2 + 0.5,0]
               bind: [10.5,13]
               tags:
@@ -170,11 +173,13 @@ points:
         tc2:
           key:
             column_net: P14
+            rotate: 90
           row_overrides:
             tbottom:
         tc3:
           key:
             column_net: P16
+            rotate: 90
           row_overrides:
             tbottom:
               bind: [1.1,0]
@@ -213,9 +218,9 @@ outlines:
           - ref: board_index_arrows
             shift: [-5,11]
           - ref: thumb_tc1_tbottom
-            shift: [10,9.75]
+            shift: [-10,9.75]
           - ref: thumb_tc3_tbottom
-            shift: [-10,9.5]
+            shift: [-10,-9.5]
           - ref: board_inside_number
             shift: [-52.325,-15]
     roundedpoly: 
@@ -237,7 +242,7 @@ outlines:
     keycap_outlines20:
       - type: keys
         side: left
-        size: [2cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+        size: [1cy - 0.5, 2cx - 0.5] # Choc keycaps are 17.5 x 16.5
         bound: false
         tags: [2u]
     preview:
