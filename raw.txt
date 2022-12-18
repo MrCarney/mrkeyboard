@@ -102,15 +102,15 @@ points:
               bind: [42.75,6]
       rows:
         arrows:
-          row_net: P02
+          row_net: P2
         bottom:
-          row_net: P03
+          row_net: P3
         home:
-          row_net: P04
+          row_net: P4
         top:
-          row_net: P05
+          row_net: P5
         number:
-          row_net: P06
+          row_net: P6
     thumb:
       anchor:
         ref: board_indexplus_arrows
@@ -148,17 +148,17 @@ points:
               bind: [1,14]
       rows:
         tr1:
-          row_net: P02
+          row_net: P2
           columns:
             tc1:
-              row_net: P07
+              row_net: P7
         tr2:
-          row_net: P03
+          row_net: P3
           columns:
             tc1:
-              row_net: P07
+              row_net: P7
         tr3:
-          row_net: P07
+          row_net: P7
 outlines:
   polygon:
     - what: polygon
@@ -220,13 +220,14 @@ pcbs:
           what: choc
           params:
             keycaps: true
-            reverse: true
+            reverse: false
             hotswap: true
             # from: P1
             # to: P2
             from: =colrow
             to: =column_net
-          where:
+          where: true
+          adjust:
             rotate: 180
       diode:
         what: diode
@@ -235,17 +236,19 @@ pcbs:
           # to: P4
           from: =colrow
           to: =row_net
-        where:
-          shift: [-8, -3.5]
+        where: true
+        adjust:
+          shift: [8, 3.5]
           rotate: 90
       rgb:
         what: rgb
         params:
-          din: P01
+          din: P1
           dout: D1
           VCC: VCC
           GND: GND
-        where:
+        where: true
+        adjust:
           shift: [0, 5]
       promicro:
         what: promicro
@@ -259,6 +262,7 @@ pcbs:
           ref:
             - board_inside_home
           shift: [cx/2+10, 2.25]
+          rotate: 90
         params:
           from: RST
           to: GND
@@ -271,28 +275,7 @@ pcbs:
         params:
           A: GND
           B: GND
-          C: P2
+          C: P9
           D: VCC
           reverse: true
           symmetric: true
-      via3:
-        what: via
-        where:
-          ref: board_inside_top
-          shift: [18,25.9678]
-        params:
-          net: RAW
-      via4:
-        what: via
-        where:
-          ref: board_inside_top
-          shift: [18,18.348]
-        params:
-          net: VCC
-      via5:
-        what: via
-        where:
-          ref: board_inside_top
-          shift: [18,23.431]
-        params:
-          net: GND
