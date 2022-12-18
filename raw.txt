@@ -1,90 +1,59 @@
+units:
+  u: U
+  $default_width: cx
+  $default_height: cy
+  $default_autobind: 11
+  thumb_radius: ((5cx/2+1)^2 + (5cy/2)^2)^0.5
+  phi: atan((5cy/2)/(5cx/2+1)) - pi/6
+  thumb_2high_hypotenuse: ((cx/2)^2 + (3cy/2)^2)^0.5
 points:
   key:
     bind: [1,0]
     padding: cy
-    rotate: 180
+    spread: cx
+    rotate: 0
     tags:
-      1u: true
-    footprints:
-      choc_hotswap:
-        type: choc
-        params:
-          keycaps: true
-          reverse: true
-          hotswap: true
-        nets:
-          # from: P1
-          # to: P2
-          from: =colrow
-          to: =column_net
-      diode:
-        type: diode
-        nets:
-          # from: P3
-          # to: P4
-          from: =colrow
-          to: =row_net
-        anchor:
-          shift: [-8, -3.5]
-          rotate: 90
-      rgb:
-        type: rgb
-        nets:
-          din: P01
-          dout: D1
-          VCC: VCC
-          GND: GND
-        anchor:
-          shift: [0, -5]
+      1high: true
   zones:
     board:
       columns:
         far:
           key:
             column_net: P21
-          spread: cx
-          row_overrides:
+          rows:
             arrows:
               bind: [12,0]
-              tags:
-                1u: true
-                15u: false
             bottom:
               bind: [7,0]
-              shift: [-5,0]
+              shift: [-0.25cx,0]
               tags:
-                1u: false
-                15u: true
+                1high: false
+                15high: true
             home:
               bind: [7,0]
-              shift: [-5,0]
               tags:
-                1u: false
-                15u: true
+                1high: false
+                15high: true
             top:
               bind: [7,0]
-              shift: [-5,0]
               tags:
-                1u: false
-                15u: true
+                1high: false
+                15high: true
             number:
               bind: [7,4]
-              shift: [-5,0]
               tags:
-                1u: false
-                15u: true
+                1high: false
+                15high: true
         pinkie:
           key:
             column_net: P20
-          spread: cx
           rows:
             number:
               bind: [1,4]
         ring:
           key:
             column_net: P19
-          spread: cx
-          stagger: 2
+            stagger: 2
           rows:
             arrows:
               bind: [1,2]
@@ -93,16 +62,14 @@ points:
         middle:
           key:
             column_net: P18
-          spread: cx
-          stagger: 2
+            stagger: 2
           rows:
             arrows:
               bind: [1,4]
         index:
           key:
             column_net: P15
-          spread: cx
-          stagger: -2
+            stagger: -2
           rows:
             arrows:
               bind: [1,2]
@@ -111,9 +78,9 @@ points:
         indexplus:
           key:
             column_net: P14
-          spread: cx
-          stagger: cy-2
-          row_overrides:
+            stagger: -2
+          rows:
+            arrows.skip: true
             bottom:
               bind: [0,5]
             home:
@@ -123,9 +90,10 @@ points:
         inside:
           key:
             column_net: P16
-          spread: cx
-          stagger: cy-2
-          row_overrides:
+            stagger: -2
+          rows:
+            arrows.skip: true
+            bottom.skip: true
             home:
               bind: [42.75,14.2]
             top:
@@ -145,167 +113,186 @@ points:
           row_net: P06
     thumb:
       anchor:
-        ref: board_inside_home
-        shift: [-20,60]
-        rotate: 240
+        ref: board_indexplus_arrows
+        shift: [0,-cy-1]
+        rotate: -30
       columns:
         tc1:
-          row_overrides:
-            tbottom:
+          rows:
+            tr1:
               column_net: P15
-              rotate: 90
-            tmid:
-              column_net: P18
-              rotate: 90
-              shift: [cx/2 + 0.5,0]
-              bind: [10.5,0]
               tags:
-                1u: false
-                2u: true
-            ttop:
-              column_net: P19
-              rotate: 90
-              shift: [cx/2 + 0.5,0]
-              bind: [10.5,13]
-              tags:
-                1u: false
-                2u: true
+                2high: true
+              shift: [0,0.5cy]
+            tr2.skip: true
+            tr3.skip: true
         tc2:
           key:
             column_net: P14
-            rotate: 90
-          row_overrides:
-            tbottom:
+          rows:
+            tr1:
+              column_net: P15
+              tags:
+                2high: true
+              shift: [0,0.5cy]
+            tr2.skip: true
+            tr3:
+              shift: [0,-0.5cy]
         tc3:
           key:
             column_net: P16
-            rotate: 90
-          row_overrides:
-            tbottom:
+          rows:
+            tr1:
               bind: [1.1,0]
-            tmid:
+            tr2:
               bind: [1,14]
       rows:
-        tbottom:
+        tr1:
           row_net: P02
-          column_overrides:
+          columns:
             tc1:
               row_net: P07
-        tmid:
+        tr2:
           row_net: P03
-          column_overrides:
+          columns:
             tc1:
               row_net: P07
-        ttop:
+        tr3:
           row_net: P07
 outlines:
-  exports:
-    raw:
-      - type: keys
-        side: left
-        size: [1cx - 0.5, 1cx - 0.5]
-    cutout:
-      - type: outline
-        name: raw
-        fillet: 2
-    polygon:
-      - type: polygon
-        points:
-          - ref: board_far_number
-            shift: [14,-13]
-          - ref: board_far_arrows
-            shift: [19,9]
-          - ref: board_index_arrows
-            shift: [-5,11]
-          - ref: thumb_tc1_tbottom
-            shift: [-10,9.75]
-          - ref: thumb_tc3_tbottom
-            shift: [-10,-9.5]
-          - ref: board_inside_number
-            shift: [-52.325,-15]
-    roundedpoly: 
-      - type: outline
-        name: polygon
-        fillet: 3
-    keycap_outlines:
-      - type: keys
-        side: left
-        size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
-        bound: false
-        tags: [1u]
-    keycap_outlines15:
-      - type: keys
-        side: left
-        size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
-        bound: false
-        tags: [15u]
-    keycap_outlines20:
-      - type: keys
-        side: left
-        size: [1cy - 0.5, 2cx - 0.5] # Choc keycaps are 17.5 x 16.5
-        bound: false
-        tags: [2u]
-    preview:
-      [keycap_outlines,keycap_outlines15,keycap_outlines20]
+  polygon:
+    - what: polygon
+      points:
+        - ref: board_far_number
+          shift: [-1.5cx/2-1,cy/2+4+1]
+        - ref: board_far_arrows
+          shift: [-1.5cx/2-1-0.25cx,-cy/2-1]
+        - ref: board_far_arrows
+          shift: [4cx,-cy/2-1]
+        - ref: thumb_tc1_tr1
+        - ref: board_indexplus_home
+          shift: [thumb_radius*cos(phi),-3cy + thumb_radius*sin(phi)-1]
+        - ref: board_pinkie_number
+          shift: [4cx+thumb_radius*cos(phi),cy/2+4+1]
+    - what: polygon
+      points:
+        - ref: thumb_tc3_tr1
+          shift: [-4cx,-cy/2-1]
+        - ref: thumb_tc3_tr1
+          shift: [cx/2+1,-cy/2-1]
+        - ref: thumb_tc3_tr3
+          shift: [cx/2+1,cy/2]
+        - ref: thumb_tc3_tr3
+          shift: [-4cx,cy/2+1]
+  roundedpoly: 
+    - what: outline
+      name: polygon
+      fillet: 3
+  keycap_outlines:
+    - what: rectangle
+      size: [1cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+      bound: false
+      where: 1high
+  keycap_outlines15:
+    - what: rectangle
+      size: [1.5cx - 0.5, 1cy - 0.5] # Choc keycaps are 17.5 x 16.5
+      bound: false
+      where: 15high
+  keycap_outlines20:
+    - what: rectangle
+      size: [1cx - 0.5, 2cy - 0.5] # Choc keycaps are 17.5 x 16.5
+      bound: false
+      where: 2high
+  preview:
+    - name: keycap_outlines
+    - name: keycap_outlines15
+    - name: keycap_outlines20
 pcbs:
-  mrkeys:
+  mrkeyboard:
     outlines:
       board:
         outline: roundedpoly
       keycaps:
-        outline: preview
+        outline: preview       
         layer: Eco1.User
     footprints:
-      promicro:
-        type: promicro
-        anchor:
-          ref: board_inside_number
-          shift: [-30.25, 5]
-          rotate: 90
+      choc_hotswap:
+          what: choc
+          params:
+            keycaps: true
+            reverse: true
+            hotswap: true
+            # from: P1
+            # to: P2
+            from: =colrow
+            to: =column_net
+          where:
+            rotate: 180
+      diode:
+        what: diode
         params:
-          reverse: true
+          # from: P3
+          # to: P4
+          from: =colrow
+          to: =row_net
+        where:
+          shift: [-8, -3.5]
+          rotate: 90
+      rgb:
+        what: rgb
+        params:
+          din: P01
+          dout: D1
+          VCC: VCC
+          GND: GND
+        where:
+          shift: [0, 5]
+      promicro:
+        what: promicro
+        where:
+          ref: board_inside_number
+          shift: [30.25, -5]
+          rotate: -90
       reset:
-        type: button
-        anchor:
+        what: button
+        where:
           ref:
             - board_inside_home
-          shift: [-22, -5]
-          rotate: 0
-        nets:
+          shift: [22, 5]
+        params:
           from: RST
           to: GND
       trrs:
-        type: trrs
-        nets:
+        what: trrs
+        where:
+          ref: board_inside_home
+          shift: [49, 0]
+          rotate: -90
+        params:
           A: GND
           B: GND
           C: P2
           D: VCC
-        anchor:
-          ref: board_inside_home
-          shift: [-49, 0]
-          rotate: 90
-        params:
           reverse: true
           symmetric: true
       via3:
-        type: via
-        anchor:
+        what: via
+        where:
           ref: board_inside_top
-          shift: [-18,-25.9678]
-        nets:
+          shift: [18,25.9678]
+        params:
           net: RAW
       via4:
-        type: via
-        anchor:
+        what: via
+        where:
           ref: board_inside_top
-          shift: [-18,-18.348]
-        nets:
+          shift: [18,18.348]
+        params:
           net: VCC
       via5:
-        type: via
-        anchor:
+        what: via
+        where:
           ref: board_inside_top
-          shift: [-18,-23.431]
-        nets:
+          shift: [18,23.431]
+        params:
           net: GND
