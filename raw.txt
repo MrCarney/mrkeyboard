@@ -251,14 +251,14 @@ pcbs:
         what: promicro
         where:
           ref: board_inside_number
-          shift: [30.25, -5]
+          shift: [27,-4]
           rotate: -90
       reset:
         what: button
         where:
           ref:
             - board_inside_home
-          shift: [22, 5]
+          shift: [cx/2+10, 2.25]
         params:
           from: RST
           to: GND
@@ -266,7 +266,7 @@ pcbs:
         what: trrs
         where:
           ref: board_inside_home
-          shift: [49, 0]
+          shift: [41, 0]
           rotate: -90
         params:
           A: GND
