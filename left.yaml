@@ -102,20 +102,15 @@ points:
               bind: [42.75,6]
       rows:
         arrows:
-          key:
-            row_net: P6
+          row_net: P6
         bottom:
-          key:
-            row_net: P5
+          row_net: P5
         home:
-          key:
-            row_net: P4
+          row_net: P4
         top:
-          key:
-            row_net: P3
+          row_net: P3
         number:
-          key:
-            row_net: P2
+          row_net: P2
     thumb:
       anchor:
         ref: board_indexplus_arrows
@@ -153,14 +148,11 @@ points:
               bind: [1,14]
       rows:
         tr1:
-          key:
-            row_net: P6
+          row_net: P6
         tr2:
-          key:
-            row_net: P5
+          row_net: P5
         tr3:
-          key:
-            row_net: P4
+          row_net: P4
 outlines:
   polygon:
     - what: polygon
