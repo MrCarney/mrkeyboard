@@ -102,15 +102,20 @@ points:
               bind: [42.75,6]
       rows:
         arrows:
-          row_net: P6
+          key:
+            row_net: P6
         bottom:
-          row_net: P5
+          key:
+            row_net: P5
         home:
-          row_net: P4
+          key:
+            row_net: P4
         top:
-          row_net: P3
+          key:
+            row_net: P3
         number:
-          row_net: P2
+          key:
+            row_net: P2
     thumb:
       anchor:
         ref: board_indexplus_arrows
@@ -148,11 +153,14 @@ points:
               bind: [1,14]
       rows:
         tr1:
-          row_net: P6
+          key:
+            row_net: P6
         tr2:
-          row_net: P5
+          key:
+            row_net: P5
         tr3:
-          row_net: P4
+          key:
+            row_net: P4
 outlines:
   polygon:
     - what: polygon
@@ -216,32 +224,22 @@ pcbs:
           keycaps: false
           reverse: true
           hotswap: true
-          from: =column_net
-          to: =colrow
+          from: "{{column_net}}"
+          to: "{{colrow}}"
         where: true
         adjust:
           rotate: 180
       diode:
         what: diode
         params:
-          from: =colrow
-          to: =row_net
+          from: "{{colrow}}"
+          to: "{{row_net}}"
         where: true
         adjust:
           shift: [-8, 3.5]
           rotate: 270
-      rgb:
-        what: rgb
-        params:
-          din: P1
-          dout: D1
-          VCC: VCC
-          GND: GND
-        where: true
-        adjust:
-          shift: [0, 4.7]
       promicro:
-        what: promicro_pretty
+        what: promicro
         where:
           ref: board_inside_number
           shift: [27,-4]
