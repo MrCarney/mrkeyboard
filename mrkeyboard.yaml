@@ -335,6 +335,16 @@ pcbs:
         adjust:
           shift: [-8, 3.5]
           rotate: 270
+      rgb:
+        what: rgb
+        params:
+          din: P1
+          dout: D1
+          VCC: VCC
+          GND: GND
+        where: left
+        adjust:
+          shift: [0, 4.7]
       promicro:
         what: promicro
         params:
@@ -391,6 +401,16 @@ pcbs:
         adjust:
           shift: [-8, 3.5]
           rotate: 270
+      rgb:
+        what: rgb
+        params:
+          din: P1
+          dout: D1
+          VCC: VCC
+          GND: GND
+        where: right
+        adjust:
+          shift: [0, 4.7]
       promicro:
         what: promicro
         params:
