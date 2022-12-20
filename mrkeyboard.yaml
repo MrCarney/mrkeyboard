@@ -1,0 +1,424 @@
+units:
+  u: U
+  $default_width: cx
+  $default_height: cy
+  $default_autobind: 11
+  thumb_radius: ((5cx/2+1)^2 + (5cy/2)^2)^0.5
+  phi: atan((5cy/2)/(5cx/2+1)) - pi/6
+  thumb_2high_hypotenuse: ((cx/2)^2 + (3cy/2)^2)^0.5
+points:
+  key:
+    padding: cy
+    spread: cx
+    rotate: 0
+    tags:
+      1high: true
+  zones:
+    left:
+      key:
+        tags:
+          left: true
+      columns:
+        far:
+          key:
+            column_net: P20
+          rows:
+            arrows:
+            bottom:
+              shift: [-0.25cx,0]
+              tags:
+                1high: false
+                15high: true
+            home:
+              tags:
+                1high: false
+                15high: true
+            top:
+              tags:
+                1high: false
+                15high: true
+            number:
+              tags:
+                1high: false
+                15high: true
+        pinkie:
+          key:
+            column_net: P19
+        ring:
+          key:
+            column_net: P18
+            stagger: 2
+        middle:
+          key:
+            column_net: P15
+            stagger: 2
+        index:
+          key:
+            column_net: P14
+            stagger: -2
+        indexplus:
+          key:
+            column_net: P16
+            stagger: -2
+          rows:
+            arrows.skip: true
+            bottom:
+            home:
+            top:
+            number:
+        inside:
+          key:
+            column_net: P9
+            stagger: -2
+          rows:
+            arrows.skip: true
+            bottom.skip: true
+            home:
+            top:
+            number:
+      rows:
+        arrows:
+          row_net: P6
+        bottom:
+          row_net: P5
+        home:
+          row_net: P4
+        top:
+          row_net: P3
+        number:
+          row_net: P2
+    left_thumb:
+      anchor:
+        ref: left_indexplus_arrows
+        shift: [0,-cy-1]
+        rotate: -30
+      key:
+        tags:
+          left: true
+      columns:
+        inside:
+          key:
+            column_net: P16
+          rows:
+            bottom:
+              tags:
+                2high: true
+              shift: [0,0.5cy]
+            middle.skip: true
+            top.skip: true
+        center:
+          key:
+            column_net: P10
+          rows:
+            bottom:
+              tags:
+                2high: true
+              shift: [0,0.5cy]
+            middle:
+              shift: [0,0.5cy]
+            top.skip: true
+        outside:
+          key:
+            column_net: P10
+      rows:
+        bottom:
+          row_net: P6
+        middle:
+          row_net: P5
+        top:
+          row_net: P4
+    right:
+      key:
+        tags:
+          right: true
+      columns:
+        far:
+          key:
+            column_net: P20
+          rows:
+            arrows:
+            bottom:
+              shift: [0.25cx,0]
+              tags:
+                1high: false
+                15high: true
+            home:
+              tags:
+                1high: false
+                15high: true
+            top:
+              tags:
+                1high: false
+                15high: true
+            number:
+              tags:
+                1high: false
+                15high: true
+        pinkie:
+          key:
+            column_net: P19
+          rows:
+            arrows:
+              shift: [-2cx,0]
+        ring:
+          key:
+            column_net: P18
+            stagger: 2
+          rows:
+            arrows:
+              shift: [-4cx,0]
+        middle:
+          key:
+            column_net: P15
+            stagger: 2
+          rows:
+            arrows:
+              shift: [-6cx,0]
+        index:
+          key:
+            column_net: P14
+            stagger: -2
+          rows:
+            arrows:
+              shift: [-8cx,0]
+        indexplus:
+          key:
+            column_net: P16
+            stagger: -2
+          rows:
+            arrows.skip: true
+            bottom:
+              shift: [-10cx,0]
+        inside:
+          key:
+            column_net: P9
+            stagger: -2
+          rows:
+            arrows.skip: true
+            bottom.skip: true
+            home:
+              shift: [-12cx,0]
+      rows:
+        arrows:
+          row_net: P6
+        bottom:
+          row_net: P5
+        home:
+          row_net: P4
+        top:
+          row_net: P3
+        number:
+          row_net: P2
+    right_thumb:
+      anchor:
+        ref: right_indexplus_arrows
+        shift: [-10cx,-cy-1]
+        rotate: 30
+      key:
+        tags:
+          right: true
+      columns:
+        inside:
+          key:
+            column_net: P16
+          rows:
+            bottom:
+              tags:
+                2high: true
+              shift: [0,0.5cy]
+            middle.skip: true
+            top.skip: true
+        center:
+          key:
+            column_net: P10
+          rows:
+            bottom:
+              tags:
+                2high: true
+              shift: [-2cx,0.5cy]
+            middle:
+              shift: [0,0.5cy]
+            top.skip: true
+        outside:
+          key:
+            column_net: P10
+          rows:
+            bottom:
+              shift: [-4cx,0]
+      rows:
+        bottom:
+          row_net: P6
+        middle:
+          row_net: P5
+        top:
+          row_net: P4
+outlines:
+  polygon_left:
+    - what: polygon
+      points:
+        - ref: left_far_number
+          shift: [-1.5cx/2-1,cy/2+4+1]
+        - ref: left_far_arrows
+          shift: [-1.5cx/2-1-0.25cx,-cy/2-1]
+        - ref: left_far_arrows
+          shift: [4cx,-cy/2-1]
+        - ref: left_thumb_inside_bottom
+        - ref: left_indexplus_home
+          shift: [thumb_radius*cos(phi),-3cy + thumb_radius*sin(phi)-1]
+        - ref: left_pinkie_number
+          shift: [4cx+thumb_radius*cos(phi),cy/2+4+1]
+    - what: polygon
+      points:
+        - ref: left_thumb_outside_bottom
+          shift: [-4cx,-cy/2-1]
+        - ref: left_thumb_outside_bottom
+          shift: [cx/2+1,-cy/2-1]
+        - ref: left_thumb_outside_top
+          shift: [cx/2+1,cy/2]
+        - ref: left_thumb_outside_top
+          shift: [-4cx,cy/2+1]
+  polygon_right:
+    - what: polygon
+      points:
+        - ref: right_far_number
+          shift: [1.5cx/2+1,cy/2+4+1]
+        - ref: right_far_arrows
+          shift: [1.5cx/2+1+0.25cx,-cy/2-1]
+        - ref: right_far_arrows
+          shift: [-4cx,-cy/2-1]
+        - ref: right_thumb_inside_bottom
+        - ref: right_indexplus_home
+          shift: [-thumb_radius*cos(phi),-3cy + thumb_radius*sin(phi)-1]
+        - ref: right_pinkie_number
+          shift: [-4cx-thumb_radius*cos(phi),cy/2+4+1]
+    - what: polygon
+      points:
+        - ref: right_thumb_outside_bottom
+          shift: [4cx,-cy/2-1]
+        - ref: right_thumb_outside_bottom
+          shift: [-cx/2-1,-cy/2-1]
+        - ref: right_thumb_outside_top
+          shift: [-cx/2-1,cy/2]
+        - ref: right_thumb_outside_top
+          shift: [4cx,cy/2+1]
+  roundedpoly_left:
+    - what: outline
+      name: polygon_left
+      fillet: 3
+  roundedpoly_right:
+    - what: outline
+      name: polygon_right
+      fillet: 3
+pcbs:
+  mrkeyboard_left:
+    outlines:
+      left:
+        outline: roundedpoly_left
+    footprints:
+      choc_hotswap:
+        what: choc
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+        where: left
+        adjust:
+          rotate: 180
+      diode:
+        what: diode_smd_backonly
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        where: left
+        adjust:
+          shift: [-8, 3.5]
+          rotate: 270
+      promicro:
+        what: promicro
+        params:
+          orientation: "up"
+        where:
+          ref: left_inside_number
+          shift: [27,-4]
+          rotate: -90
+      reset:
+        what: button
+        where:
+          ref:
+            - left_inside_home
+          shift: [cx/2+10, 2.25]
+          rotate: 90
+        params:
+          from: RST
+          to: GND
+      trrs:
+        what: trrs
+        where:
+          ref: left_inside_home
+          shift: [41, 0]
+          rotate: -90
+        params:
+          A: GND
+          B: GND
+          C: P9
+          D: VCC
+          reverse: false
+          symmetric: false
+  mrkeyboard_right:
+    outlines:
+      right:
+        outline: roundedpoly_right
+    footprints:
+      choc_hotswap:
+        what: choc
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+        where: right
+        adjust:
+          rotate: 180
+      diode:
+        what: diode_smd_backonly
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        where: right
+        adjust:
+          shift: [-8, 3.5]
+          rotate: 270
+      promicro:
+        what: promicro
+        params:
+          orientation: "up"
+        where:
+          ref: right_inside_number
+          shift: [-27,-4]
+          rotate: -90
+      reset:
+        what: button
+        where:
+          ref:
+            - right_inside_home
+          shift: [-cx/2-10, 2.25]
+          rotate: -90
+        params:
+          from: RST
+          to: GND
+      trrs:
+        what: trrs
+        where:
+          ref: right_inside_home
+          shift: [-41, 4.6]
+          rotate: 90
+        params:
+          A: GND
+          B: GND
+          C: P9
+          D: VCC
+          reverse: false
+          symmetric: false
