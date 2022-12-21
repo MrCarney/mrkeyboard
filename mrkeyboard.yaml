@@ -68,7 +68,7 @@ points:
             number:
         inside:
           key:
-            column_net: P9
+            column_net: P10
             stagger: -2
           rows:
             arrows.skip: true
@@ -93,40 +93,44 @@ points:
         shift: [0,-cy-1]
         rotate: -30
       key:
+        column_net: P7
         tags:
           left: true
       columns:
         inside:
-          key:
-            column_net: P16
           rows:
             bottom:
+              row_net: P2
               tags:
                 2high: true
               shift: [0,0.5cy]
             middle.skip: true
             top.skip: true
         center:
-          key:
-            column_net: P10
           rows:
             bottom:
+              row_net: P3
               tags:
                 2high: true
               shift: [0,0.5cy]
-            middle:
-              shift: [0,0.5cy]
-            top.skip: true
+            middle.skip: true
+            top:
+              column_net: P10
+              row_net: P6
+              shift: [0,-0.5cy]
         outside:
-          key:
-            column_net: P10
+          rows:
+            bottom:
+              row_net: P4
+            middle:
+              column_net: P10
+              row_net: P5
+            top:
+              row_net: P5
       rows:
         bottom:
-          row_net: P6
         middle:
-          row_net: P5
         top:
-          row_net: P4
     right:
       key:
         tags:
@@ -191,7 +195,7 @@ points:
               shift: [-10cx,0]
         inside:
           key:
-            column_net: P9
+            column_net: P7
             stagger: -2
           rows:
             arrows.skip: true
@@ -249,9 +253,9 @@ points:
         bottom:
           row_net: P6
         middle:
-          row_net: P5
+          row_net: P9
         top:
-          row_net: P4
+          row_net: P8
 outlines:
   polygon_left:
     - what: polygon
@@ -321,8 +325,8 @@ pcbs:
           keycaps: true
           reverse: false
           hotswap: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
+          from: "{{colrow}}"
+          to: "{{column_net}}"
         where: left
         adjust:
           rotate: 180
@@ -338,8 +342,8 @@ pcbs:
       rgb:
         what: rgb
         params:
-          din: P1
-          dout: D1
+          din: "{{name}}_in"
+          dout: "{{name}}_out"
           VCC: VCC
           GND: GND
         where: left
@@ -359,7 +363,6 @@ pcbs:
           ref:
             - left_inside_home
           shift: [cx/2+10, 2.25]
-          rotate: 90
         params:
           from: RST
           to: GND
@@ -372,7 +375,7 @@ pcbs:
         params:
           A: GND
           B: GND
-          C: P9
+          C: P21
           D: VCC
           reverse: false
           symmetric: false
@@ -390,8 +393,6 @@ pcbs:
           from: "{{column_net}}"
           to: "{{colrow}}"
         where: right
-        adjust:
-          rotate: 180
       diode:
         what: diode_smd_backonly
         params:
@@ -425,7 +426,6 @@ pcbs:
           ref:
             - right_inside_home
           shift: [-cx/2-10, 2.25]
-          rotate: -90
         params:
           from: RST
           to: GND
@@ -438,7 +438,7 @@ pcbs:
         params:
           A: GND
           B: GND
-          C: P9
+          C: P7
           D: VCC
           reverse: false
           symmetric: false
