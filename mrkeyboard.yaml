@@ -1,15 +1,22 @@
 units:
-  u: U
-  $default_width: cx
-  $default_height: cy
-  $default_autobind: 11
-  thumb_radius: ((5cx/2+1)^2 + (5cy/2)^2)^0.5
-  phi: atan((5cy/2)/(5cx/2+1)) - pi/6
-  thumb_2high_hypotenuse: ((cx/2)^2 + (3cy/2)^2)^0.5
+  #cx:18
+  #cy:17
+  # Proxy Spacing Variables
+  kx: cx + 1
+  ky: cy + 1
+  # Padding Variables
+  px: kx + 2
+  py: ky + 2
+  #$default_width: kx
+  #$default_height: ky
+  #$default_autobind: 11
+  thumb_radius: ((5kx/2+1)^2 + (5ky/2)^2)^0.5
+  phi: atan((5ky/2)/(5kx/2+1)) - pi/6
+  thumb_2high_hypotenuse: ((kx/2)^2 + (3ky/2)^2)^0.5
 points:
   key:
-    padding: cy
-    spread: cx
+    padding: ky
+    spread: kx
     rotate: 0
     tags:
       1high: true
@@ -21,45 +28,35 @@ points:
       columns:
         far:
           key:
-            column_net: P20
+            splay: 8.5
+            column_net: P21
           rows:
             arrows:
             bottom:
-              shift: [-0.25cx,0]
-              tags:
-                1high: false
-                15high: true
             home:
-              tags:
-                1high: false
-                15high: true
             top:
-              tags:
-                1high: false
-                15high: true
             number:
-              tags:
-                1high: false
-                15high: true
         pinkie:
           key:
-            column_net: P19
+            stagger: -1.5
+            column_net: P20
         ring:
           key:
-            column_net: P18
-            stagger: 2
+            splay: -3.5
+            column_net: P19
         middle:
           key:
-            column_net: P15
+            splay: -5
             stagger: 2
+            column_net: P18
         index:
           key:
-            column_net: P14
-            stagger: -2
+            column_net: P15
+            stagger: -3
         indexplus:
           key:
-            column_net: P16
-            stagger: -2
+            column_net: P14
+            stagger: -4
           rows:
             arrows.skip: true
             bottom:
@@ -68,250 +65,73 @@ points:
             number:
         inside:
           key:
-            column_net: P10
-            stagger: -2
+            column_net: P16
           rows:
             arrows.skip: true
-            bottom.skip: true
-            home:
-            top:
-            number:
       rows:
         arrows:
-          row_net: P6
+          row_net: P7
         bottom:
-          row_net: P5
+          row_net: P6
         home:
-          row_net: P4
+          row_net: P5
         top:
-          row_net: P3
+          row_net: P4
         number:
-          row_net: P2
+          row_net: P3
     left_thumb:
       anchor:
         ref: left_indexplus_arrows
-        shift: [0,-cy-1]
-        rotate: -30
+        shift: [0,-ky]
+        rotate: -20 
       key:
-        column_net: P7
+        row_net: P7
+        splay: -15
+        stagger: -1
         tags:
           left: true
       columns:
         inside:
           rows:
             bottom:
-              row_net: P2
-              tags:
-                2high: true
-              shift: [0,0.5cy]
-            middle.skip: true
-            top.skip: true
+              column_net: P14
+              shift: [0,0.5ky]
         center:
           rows:
             bottom:
-              row_net: P3
-              tags:
-                2high: true
-              shift: [0,0.5cy]
-            middle.skip: true
-            top:
-              column_net: P10
-              row_net: P6
-              shift: [0,-0.5cy]
+              column_net: P16
+              shift: [0,0.5ky]
         outside:
           rows:
             bottom:
-              row_net: P4
-            middle:
-              column_net: P10
-              row_net: P5
-            top:
-              row_net: P5
+              column_net: P16
+              row_net: P8
+              shift: [0,0.5ky]
       rows:
         bottom:
-        middle:
-        top:
-    right:
-      key:
-        tags:
-          right: true
-      columns:
-        far:
-          key:
-            column_net: P20
-          rows:
-            arrows:
-            bottom:
-              shift: [0.25cx,0]
-              tags:
-                1high: false
-                15high: true
-            home:
-              tags:
-                1high: false
-                15high: true
-            top:
-              tags:
-                1high: false
-                15high: true
-            number:
-              tags:
-                1high: false
-                15high: true
-        pinkie:
-          key:
-            column_net: P19
-          rows:
-            arrows:
-              shift: [-2cx,0]
-        ring:
-          key:
-            column_net: P18
-            stagger: 2
-          rows:
-            arrows:
-              shift: [-4cx,0]
-        middle:
-          key:
-            column_net: P15
-            stagger: 2
-          rows:
-            arrows:
-              shift: [-6cx,0]
-        index:
-          key:
-            column_net: P14
-            stagger: -2
-          rows:
-            arrows:
-              shift: [-8cx,0]
-        indexplus:
-          key:
-            column_net: P16
-            stagger: -2
-          rows:
-            arrows.skip: true
-            bottom:
-              shift: [-10cx,0]
-        inside:
-          key:
-            column_net: P7
-            stagger: -2
-          rows:
-            arrows.skip: true
-            bottom.skip: true
-            home:
-              shift: [-12cx,0]
-      rows:
-        arrows:
-          row_net: P6
-        bottom:
-          row_net: P5
-        home:
-          row_net: P4
-        top:
-          row_net: P3
-        number:
-          row_net: P2
-    right_thumb:
-      anchor:
-        ref: right_indexplus_arrows
-        shift: [-10cx,-cy-1]
-        rotate: 30
-      key:
-        tags:
-          right: true
-      columns:
-        inside:
-          key:
-            column_net: P16
-          rows:
-            bottom:
-              tags:
-                2high: true
-              shift: [0,0.5cy]
-            middle.skip: true
-            top.skip: true
-        center:
-          key:
-            column_net: P10
-          rows:
-            bottom:
-              tags:
-                2high: true
-              shift: [-2cx,0.5cy]
-            middle:
-              shift: [0,0.5cy]
-            top.skip: true
-        outside:
-          key:
-            column_net: P10
-          rows:
-            bottom:
-              shift: [-4cx,0]
-      rows:
-        bottom:
-          row_net: P6
-        middle:
-          row_net: P9
-        top:
-          row_net: P8
 outlines:
   polygon_left:
     - what: polygon
       points:
         - ref: left_far_number
-          shift: [-1.5cx/2-1,cy/2+4+1]
+          shift: [-px,py]
         - ref: left_far_arrows
-          shift: [-1.5cx/2-1-0.25cx,-cy/2-1]
-        - ref: left_far_arrows
-          shift: [4cx,-cy/2-1]
+          shift: [-px,-py]
         - ref: left_thumb_inside_bottom
-        - ref: left_indexplus_home
-          shift: [thumb_radius*cos(phi),-3cy + thumb_radius*sin(phi)-1]
-        - ref: left_pinkie_number
-          shift: [4cx+thumb_radius*cos(phi),cy/2+4+1]
-    - what: polygon
-      points:
+          shift: [-px,-py]
         - ref: left_thumb_outside_bottom
-          shift: [-4cx,-cy/2-1]
+          shift: [px,-py]
         - ref: left_thumb_outside_bottom
-          shift: [cx/2+1,-cy/2-1]
-        - ref: left_thumb_outside_top
-          shift: [cx/2+1,cy/2]
-        - ref: left_thumb_outside_top
-          shift: [-4cx,cy/2+1]
-  polygon_right:
-    - what: polygon
-      points:
-        - ref: right_far_number
-          shift: [1.5cx/2+1,cy/2+4+1]
-        - ref: right_far_arrows
-          shift: [1.5cx/2+1+0.25cx,-cy/2-1]
-        - ref: right_far_arrows
-          shift: [-4cx,-cy/2-1]
-        - ref: right_thumb_inside_bottom
-        - ref: right_indexplus_home
-          shift: [-thumb_radius*cos(phi),-3cy + thumb_radius*sin(phi)-1]
-        - ref: right_pinkie_number
-          shift: [-4cx-thumb_radius*cos(phi),cy/2+4+1]
-    - what: polygon
-      points:
-        - ref: right_thumb_outside_bottom
-          shift: [4cx,-cy/2-1]
-        - ref: right_thumb_outside_bottom
-          shift: [-cx/2-1,-cy/2-1]
-        - ref: right_thumb_outside_top
-          shift: [-cx/2-1,cy/2]
-        - ref: right_thumb_outside_top
-          shift: [4cx,cy/2+1]
+          shift: [px,py]
+        - ref: left_inside_bottom
+          shift: [kx/2+32.75,-3*ky]
+        - ref: left_middle_number
+          shift: [3.5*kx+32.75,py]
+        - ref: left_middle_number
+          shift: [0,py]
   roundedpoly_left:
     - what: outline
       name: polygon_left
-      fillet: 3
-  roundedpoly_right:
-    - what: outline
-      name: polygon_right
       fillet: 3
 pcbs:
   mrkeyboard_left:
@@ -325,8 +145,8 @@ pcbs:
           keycaps: true
           reverse: false
           hotswap: true
-          from: "{{colrow}}"
-          to: "{{column_net}}"
+          from: "{{column_net}}"
+          to: "{{colrow}}"
         where: left
         adjust:
           rotate: 180
@@ -354,15 +174,15 @@ pcbs:
         params:
           orientation: "up"
         where:
-          ref: left_inside_number
-          shift: [27,-4]
+          ref: left_middle_number
+          shift: [3.5*kx+32.75/2,py-17.78]
           rotate: -90
       reset:
         what: button
         where:
           ref:
             - left_inside_home
-          shift: [cx/2+10, 2.25]
+          shift: [kx/2+10, 2.25]
         params:
           from: RST
           to: GND
@@ -370,7 +190,7 @@ pcbs:
         what: trrs
         where:
           ref: left_inside_home
-          shift: [41, 0]
+          shift: [42.25, 0]
           rotate: -90
         params:
           A: GND
@@ -379,66 +199,8 @@ pcbs:
           D: VCC
           reverse: false
           symmetric: false
-  mrkeyboard_right:
-    outlines:
-      right:
-        outline: roundedpoly_right
-    footprints:
-      choc_hotswap:
-        what: choc
-        params:
-          keycaps: true
-          reverse: false
-          hotswap: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
-        where: right
-      diode:
-        what: diode_smd_backonly
-        params:
-          from: "{{colrow}}"
-          to: "{{row_net}}"
-        where: right
-        adjust:
-          shift: [-8, 3.5]
-          rotate: 270
-      rgb:
-        what: rgb
-        params:
-          din: P1
-          dout: D1
-          VCC: VCC
-          GND: GND
-        where: right
-        adjust:
-          shift: [0, 4.7]
-      promicro:
-        what: promicro
-        params:
-          orientation: "up"
-        where:
-          ref: right_inside_number
-          shift: [-27,-4]
-          rotate: -90
-      reset:
-        what: button
-        where:
-          ref:
-            - right_inside_home
-          shift: [-cx/2-10, 2.25]
-        params:
-          from: RST
-          to: GND
-      trrs:
-        what: trrs
-        where:
-          ref: right_inside_home
-          shift: [-41, 4.6]
-          rotate: 90
-        params:
-          A: GND
-          B: GND
-          C: P7
-          D: VCC
-          reverse: false
-          symmetric: false
+cases:
+  left:
+    - name: roundedpoly_left
+      operation: add
+      extrude: 1
