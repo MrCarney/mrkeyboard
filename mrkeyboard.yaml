@@ -17,9 +17,6 @@ points:
   key:
     padding: ky
     spread: kx
-    rotate: 0
-    tags:
-      1high: true
   zones:
     left:
       key:
@@ -32,42 +29,73 @@ points:
             column_net: P21
           rows:
             arrows:
+              shift: [-1,0]
             bottom:
             home:
             top:
             number:
+            function:
+                shift: [0,10]
         pinkie:
           key:
             stagger: -1.5
             column_net: P20
+          rows:
+            arrows:
+              shift: [-1,0]
+            function:
+                shift: [0,10]
         ring:
           key:
             splay: -3.5
             column_net: P19
+          rows:
+            arrows:
+              shift: [-0.5,0]
+            function:
+                shift: [0,10]
         middle:
           key:
             splay: -5
             stagger: 2
             column_net: P18
+          rows:
+            arrows:
+              shift: [0.25,0]
+            function:
+                shift: [0,10]
         index:
           key:
             column_net: P15
             stagger: -3
+          rows:
+            arrows:
+              shift: [0.25,0]
+            function:
+                shift: [0,10]
         indexplus:
           key:
             column_net: P14
             stagger: -4
           rows:
-            arrows.skip: true
+            arrows:
+              shift: [0.25,0]
+              skip: true
             bottom:
             home:
             top:
             number:
+            function:
+                shift: [0,10]
         inside:
           key:
             column_net: P16
           rows:
-            arrows.skip: true
+            arrows:
+              shift: [0.25,0]
+              skip: true
+            function:
+                shift: [0,10]
       rows:
         arrows:
           row_net: P7
@@ -79,60 +107,70 @@ points:
           row_net: P4
         number:
           row_net: P3
+        function:
+          shift: [0,10]
     left_thumb:
       anchor:
         ref: left_indexplus_arrows
-        shift: [0,-ky]
-        rotate: -20 
+        shift: [-4,-21]       
       key:
         row_net: P7
-        splay: -15
-        stagger: -1
+        stagger: -2.5
         tags:
           left: true
       columns:
         inside:
           rows:
             bottom:
+              splay: -60
+              shift: [0,0]
               column_net: P14
-              shift: [0,0.5ky]
         center:
           rows:
             bottom:
+              shift: [3,2.5]
               column_net: P16
-              shift: [0,0.5ky]
         outside:
           rows:
             bottom:
               column_net: P16
               row_net: P8
-              shift: [0,0.5ky]
+              shift: [6,ky+5]
       rows:
         bottom:
 outlines:
   polygon_left:
     - what: polygon
       points:
-        - ref: left_far_number
+        - ref: left_far_function
           shift: [-px,py]
         - ref: left_far_arrows
           shift: [-px,-py]
         - ref: left_thumb_inside_bottom
           shift: [-px,-py]
-        - ref: left_thumb_outside_bottom
+        - ref: left_thumb_center_bottom
           shift: [px,-py]
-        - ref: left_thumb_outside_bottom
-          shift: [px,py]
+        - ref: left_inside_bottom
+          shift: [kx/2+32.75,-5*ky+1.26]
         - ref: left_inside_bottom
           shift: [kx/2+32.75,-3*ky]
-        - ref: left_middle_number
+        - ref: left_middle_function
           shift: [3.5*kx+32.75,py]
-        - ref: left_middle_number
+        - ref: left_middle_function
           shift: [0,py]
   roundedpoly_left:
     - what: outline
       name: polygon_left
       fillet: 3
+  switch_cutouts:
+    left:
+      what: rectangle
+      where: true
+      size: 13.8
+  test_print:
+    - name: roundedpoly_left
+    - name: switch_cutouts
+      operation: subtract
 pcbs:
   mrkeyboard_left:
     outlines:
@@ -175,27 +213,27 @@ pcbs:
           orientation: "up"
         where:
           ref: left_middle_number
-          shift: [3.5*kx+32.75/2,py-17.78]
+          shift: [3.5*kx+32.75/2,py-17.78+28]
           rotate: -90
       reset:
         what: button
         where:
           ref:
-            - left_inside_home
-          shift: [kx/2+10, 2.25]
+            - left_inside_number
+          shift: [2*kx-2, 2.25]
         params:
           from: RST
           to: GND
       trrs:
         what: trrs
         where:
-          ref: left_inside_home
-          shift: [42.25, 0]
+          ref: left_inside_number
+          shift: [42.25, 10]
           rotate: -90
         params:
           A: GND
           B: GND
-          C: P21
+          C: P10
           D: VCC
           reverse: false
           symmetric: false
