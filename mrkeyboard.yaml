@@ -19,9 +19,6 @@ points:
     spread: kx
   zones:
     left:
-      key:
-        tags:
-          left: true
       columns:
         far:
           key:
@@ -116,8 +113,6 @@ points:
       key:
         row_net: P7
         stagger: -2.5
-        tags:
-          left: true
       columns:
         inside:
           rows:
@@ -135,9 +130,12 @@ points:
             bottom:
               column_net: P16
               row_net: P8
-              shift: [6,ky+5]
+              shift: [6,5]
       rows:
         bottom:
+  mirror: &mirror
+    ref: left_inside_number
+    distance: 5kx
 outlines:
   polygon_left:
     - what: polygon
@@ -148,10 +146,10 @@ outlines:
           shift: [-px,-py]
         - ref: left_thumb_inside_bottom
           shift: [-px,-py]
-        - ref: left_thumb_center_bottom
+        - ref: left_thumb_outside_bottom
           shift: [px,-py]
-        - ref: left_inside_bottom
-          shift: [kx/2+32.75,-5*ky+1.26]
+        - ref: left_thumb_outside_bottom
+          shift: [px,2py-2]
         - ref: left_inside_bottom
           shift: [kx/2+32.75,-3*ky]
         - ref: left_middle_function
@@ -162,14 +160,46 @@ outlines:
     - what: outline
       name: polygon_left
       fillet: 3
-  switch_cutouts:
+  polygon_right:
+    - what: polygon
+      points:
+        - ref: mirror_left_far_function
+          shift: [-px,py]
+        - ref: mirror_left_far_arrows
+          shift: [-px,-py]
+        - ref: mirror_left_thumb_inside_bottom
+          shift: [-px,-py]
+        - ref: mirror_left_thumb_outside_bottom
+          shift: [px,-py]
+        - ref: mirror_left_thumb_outside_bottom
+          shift: [px,2py-2]
+        - ref: mirror_left_inside_bottom
+          shift: [kx/2+32.75,-3*ky]
+        - ref: mirror_left_middle_function
+          shift: [3.5*kx+32.75,py]
+        - ref: mirror_left_middle_function
+          shift: [0,py]
+  roundedpoly_right:
+    - what: outline
+      name: polygon_right
+      fillet: 3
+  switch_cutouts_left:
     left:
       what: rectangle
-      where: true
+      where: /^left_.*/
       size: 13.8
-  test_print:
+  switch_cutouts_right:
+    right:
+      what: rectangle
+      where: /^mirror_.*/
+      size: 13.8
+  test_print_left:
     - name: roundedpoly_left
-    - name: switch_cutouts
+    - name: switch_cutouts_left
+      operation: subtract
+  test_print_right:
+    - name: roundedpoly_right
+    - name: switch_cutouts_right
       operation: subtract
 pcbs:
   mrkeyboard_left:
@@ -185,7 +215,7 @@ pcbs:
           hotswap: true
           from: "{{column_net}}"
           to: "{{colrow}}"
-        where: left
+        where: /^left_.*/
         adjust:
           rotate: 180
       diode:
@@ -193,7 +223,7 @@ pcbs:
         params:
           from: "{{colrow}}"
           to: "{{row_net}}"
-        where: left
+        where: /^left_.*/
         adjust:
           shift: [-8, 3.5]
           rotate: 270
@@ -204,7 +234,7 @@ pcbs:
           dout: "{{name}}_out"
           VCC: VCC
           GND: GND
-        where: left
+        where: /^left_.*/
         adjust:
           shift: [0, 4.7]
       promicro:
@@ -237,8 +267,77 @@ pcbs:
           D: VCC
           reverse: false
           symmetric: false
+  mrkeyboard_right:
+    outlines:
+      right:
+        outline: roundedpoly_right
+    footprints:
+      choc_hotswap:
+        what: choc
+        params:
+          keycaps: true
+          reverse: false
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+        where: /^mirror_.*/
+        adjust:
+          rotate: 180
+      diode:
+        what: diode_smd_backonly
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        where: /^mirror_.*/
+        adjust:
+          shift: [8, 3.5]
+          rotate: 90
+      rgb:
+        what: rgb
+        params:
+          din: "{{name}}_in"
+          dout: "{{name}}_out"
+          VCC: VCC
+          GND: GND
+        where: /^mirror_.*/
+        adjust:
+          shift: [0, 4.7]
+      promicro:
+        what: promicro
+        params:
+          orientation: "up"
+        where:
+          ref: mirror_left_middle_number
+          shift: [3.5*kx+32.75/2,py-17.78+28]
+          rotate: 90
+      reset:
+        what: button
+        where:
+          ref:
+            - mirror_left_inside_number
+          shift: [2*kx-2, 2.25]
+        params:
+          from: RST
+          to: GND
+      trrs:
+        what: trrs
+        where:
+          ref: mirror_left_inside_number
+          shift: [42.25, 10]
+          rotate: -90
+        params:
+          A: GND
+          B: GND
+          C: P10
+          D: VCC
+          reverse: false
+          symmetric: false
 cases:
   left:
     - name: roundedpoly_left
+      operation: add
+      extrude: 1
+  right:
+    - name: roundedpoly_right
       operation: add
       extrude: 1
