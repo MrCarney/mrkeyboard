@@ -19,6 +19,8 @@ points:
     spread: kx
   zones:
     left:
+      anchor:
+        shift: [50, -160]
       columns:
         far:
           key:
@@ -31,8 +33,6 @@ points:
             home:
             top:
             number:
-            function:
-                shift: [0,10]
         pinkie:
           key:
             stagger: -1.5
@@ -40,8 +40,6 @@ points:
           rows:
             arrows:
               shift: [-1,0]
-            function:
-                shift: [0,10]
         ring:
           key:
             splay: -3.5
@@ -49,8 +47,6 @@ points:
           rows:
             arrows:
               shift: [-0.5,0]
-            function:
-                shift: [0,10]
         middle:
           key:
             splay: -5
@@ -59,8 +55,6 @@ points:
           rows:
             arrows:
               shift: [0.25,0]
-            function:
-                shift: [0,10]
         index:
           key:
             column_net: P15
@@ -68,8 +62,6 @@ points:
           rows:
             arrows:
               shift: [0.25,0]
-            function:
-                shift: [0,10]
         indexplus:
           key:
             column_net: P14
@@ -82,8 +74,6 @@ points:
             home:
             top:
             number:
-            function:
-                shift: [0,10]
         inside:
           key:
             column_net: P16
@@ -91,8 +81,6 @@ points:
             arrows:
               shift: [0.25,0]
               skip: true
-            function:
-                shift: [0,10]
       rows:
         arrows:
           row_net: P7
@@ -104,8 +92,6 @@ points:
           row_net: P4
         number:
           row_net: P3
-        function:
-          shift: [0,10]
     left_thumb:
       anchor:
         ref: left_indexplus_arrows
@@ -123,7 +109,7 @@ points:
         center:
           rows:
             bottom:
-              shift: [3,2.5]
+              shift: [3,12.5]
               column_net: P16
         outside:
           rows:
@@ -140,7 +126,7 @@ outlines:
   polygon_left:
     - what: polygon
       points:
-        - ref: left_far_function
+        - ref: left_far_number
           shift: [-px,py]
         - ref: left_far_arrows
           shift: [-px,-py]
@@ -149,21 +135,78 @@ outlines:
         - ref: left_thumb_outside_bottom
           shift: [px,-py]
         - ref: left_thumb_outside_bottom
-          shift: [px,2py-2]
+          shift: [px,2py-2.25]
         - ref: left_inside_bottom
           shift: [kx/2+32.75,-3*ky]
-        - ref: left_middle_function
+        - ref: left_middle_number
           shift: [3.5*kx+32.75,py]
-        - ref: left_middle_function
-          shift: [0,py]
+        - ref: left_inside_number
+          shift: [0,27]
+        - ref: left_inside_number
+          shift: [-kx/2,27]
+        - ref: left_inside_number
+          shift: [-kx,27]
+        - ref: left_middle_number
+          shift: [0,py-1.6]
   roundedpoly_left:
     - what: outline
       name: polygon_left
-      fillet: 3
+      fillet: 10
+  arc_circle:
+    - what: circle
+      adjust:
+        ref: left_middle_number
+        shift: [0,-20]
+      radius: 700
+  arc_rectangle:
+    - what: rectangle
+      adjust:
+        ref: left_middle_number
+        shift: [0,-24]
+      size: 1400
+  arc_top:
+    - name: arc_circle
+    - name: arc_rectangle
+      operation: subtract
+  top_right_fillet:
+    - what: rectangle
+      adjust:
+        ref: left_inside_number
+        shift: [34.75,19.5]
+      size: 15
+      fillet: 5
+  top_right_rectangle_left:
+    - what: rectangle
+      adjust:
+        ref: left_inside_number
+        shift: [30,19]
+      size: 15
+  top_right_rectangle_bottom:
+    - what: rectangle
+      adjust:
+        ref: left_inside_number
+        shift: [34,16]
+      size: 15
+  top_right_rectangle:
+    - name: top_right_rectangle_bottom
+    - name: top_right_rectangle_left
+      operation: add
+  top_right_curve:
+    - name: top_right_fillet
+    - name: top_right_rectangle
+      operation: add
+  combined_left:
+    - name: roundedpoly_left
+    - name: top_right_curve
+    - name: arc_top
+      adjust:
+        shift: [34,-667.725]
+        rotate: 4
+      operation: add
   polygon_right:
     - what: polygon
       points:
-        - ref: mirror_left_far_function
+        - ref: mirror_left_far_number
           shift: [-px,py]
         - ref: mirror_left_far_arrows
           shift: [-px,-py]
@@ -172,17 +215,58 @@ outlines:
         - ref: mirror_left_thumb_outside_bottom
           shift: [px,-py]
         - ref: mirror_left_thumb_outside_bottom
-          shift: [px,2py-2]
+          shift: [px,2py-2.25]
         - ref: mirror_left_inside_bottom
           shift: [kx/2+32.75,-3*ky]
-        - ref: mirror_left_middle_function
+        - ref: mirror_left_middle_number
           shift: [3.5*kx+32.75,py]
-        - ref: mirror_left_middle_function
-          shift: [0,py]
+        - ref: mirror_left_inside_number
+          shift: [0,27]
+        - ref: mirror_left_inside_number
+          shift: [-kx/2,27]
+        - ref: mirror_left_inside_number
+          shift: [-kx,27]
+        - ref: mirror_left_middle_number
+          shift: [0,py-1.6]
   roundedpoly_right:
     - what: outline
       name: polygon_right
-      fillet: 3
+      fillet: 10
+  top_left_fillet:
+    - what: rectangle
+      adjust:
+        ref: mirror_left_inside_number
+        shift: [34.75,19.5]
+      size: 15
+      fillet: 5
+  top_left_rectangle_right:
+    - what: rectangle
+      adjust:
+        ref: mirror_left_inside_number
+        shift: [30,19]
+      size: 15
+  top_left_rectangle_bottom:
+    - what: rectangle
+      adjust:
+        ref: mirror_left_inside_number
+        shift: [34,16]
+      size: 15
+  top_left_rectangle:
+    - name: top_left_rectangle_bottom
+    - name: top_left_rectangle_right
+      operation: add
+  top_left_curve:
+    - name: top_left_fillet
+    - name: top_left_rectangle
+      operation: add
+  combined_right:
+    - name: roundedpoly_right
+    - name: top_left_curve
+    - name: arc_top
+      adjust:
+        shift: [176.5,-653.05]
+        rotate: -4
+      operation: add
   switch_cutouts_left:
     left:
       what: rectangle
@@ -194,18 +278,18 @@ outlines:
       where: /^mirror_.*/
       size: 13.8
   test_print_left:
-    - name: roundedpoly_left
+    - name: combined_left
     - name: switch_cutouts_left
       operation: subtract
   test_print_right:
-    - name: roundedpoly_right
+    - name: combined_right
     - name: switch_cutouts_right
       operation: subtract
 pcbs:
   mrkeyboard_left:
     outlines:
       left:
-        outline: roundedpoly_left
+        outline: combined_left
     footprints:
       choc_hotswap:
         what: choc
@@ -243,13 +327,13 @@ pcbs:
           orientation: "up"
         where:
           ref: left_middle_number
-          shift: [3.5*kx+32.75/2,py-17.78+28]
+          shift: [3.5*kx+32.75/2,py-17.78]
           rotate: -90
       reset:
         what: button
         where:
           ref:
-            - left_inside_number
+            - left_inside_home
           shift: [2*kx-2, 2.25]
         params:
           from: RST
@@ -257,7 +341,7 @@ pcbs:
       trrs:
         what: trrs
         where:
-          ref: left_inside_number
+          ref: left_inside_home
           shift: [42.25, 10]
           rotate: -90
         params:
@@ -267,10 +351,21 @@ pcbs:
           D: VCC
           reverse: false
           symmetric: false
+      knob:
+        what: rotary
+        where:
+          ref: left_inside_bottom
+          shift: [0, -2.5ky]
+        params:
+          from: P22
+          to: P23
+          A: P20
+          B: GND
+          C: P21
   mrkeyboard_right:
     outlines:
       right:
-        outline: roundedpoly_right
+        outline: combined_right
     footprints:
       choc_hotswap:
         what: choc
@@ -308,13 +403,13 @@ pcbs:
           orientation: "up"
         where:
           ref: mirror_left_middle_number
-          shift: [3.5*kx+32.75/2,py-17.78+28]
+          shift: [3.5*kx+32.75/2,py-17.78]
           rotate: 90
       reset:
         what: button
         where:
           ref:
-            - mirror_left_inside_number
+            - mirror_left_inside_home
           shift: [2*kx-2, 2.25]
         params:
           from: RST
@@ -322,7 +417,7 @@ pcbs:
       trrs:
         what: trrs
         where:
-          ref: mirror_left_inside_number
+          ref: mirror_left_inside_home
           shift: [42.25, 10]
           rotate: -90
         params:
@@ -334,10 +429,10 @@ pcbs:
           symmetric: false
 cases:
   left:
-    - name: roundedpoly_left
+    - name: combined_left
       operation: add
       extrude: 1
   right:
-    - name: roundedpoly_right
+    - name: combined_right
       operation: add
       extrude: 1
