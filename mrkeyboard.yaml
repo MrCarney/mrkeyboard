@@ -25,55 +25,130 @@ points:
         far:
           key:
             splay: 8.5
-            column_net: P21
+            column_net: P2
           rows:
             arrows:
               shift: [-1,0]
-            bottom:
-            home:
-            top:
-            number:
+              key:
+                led_next: L2930
+                led_prev: L2229
+            bottom.key:
+              led_next: L2229
+              led_prev: L2322
+            home.key:
+              led_next: L1516
+              led_prev: L0815
+            top.key:
+              led_next: L0815
+              led_prev: L0908
+            number.key:
+              led_next: L0102
+              led_prev: P1
         pinkie:
           key:
             stagger: -1.5
-            column_net: P20
+            column_net: P3
           rows:
             arrows:
               shift: [-1,0]
+              key.led_next: L3031
+              key.led_prev: L2930
+            bottom:
+              key.led_next: L2322
+              key.led_prev: L2423
+            home:
+              key.led_next: L1617
+              key.led_prev: L1516
+            top:
+              key.led_next: L0908
+              key.led_prev: L1009
+            number:
+              key.led_next: L0203
+              key.led_prev: L0102
         ring:
           key:
             splay: -3.5
-            column_net: P19
+            column_net: P4
           rows:
             arrows:
               shift: [-0.5,0]
+              key.led_next: L3132
+              key.led_prev: L3031
+            bottom:
+              key.led_next: L2423
+              key.led_prev: L2524
+            home:
+              key.led_next: L1718
+              key.led_prev: L1617
+            top:
+              key.led_next: L1009
+              key.led_prev: L1110
+            number:
+              key.led_next: L0304
+              key.led_prev: L0203
         middle:
           key:
             splay: -5
             stagger: 2
-            column_net: P18
+            column_net: P5
           rows:
             arrows:
               shift: [0.25,0]
+              key.led_next: L3233
+              key.led_prev: L3132
+            bottom:
+              key.led_next: L2524
+              key.led_prev: L2625
+            home:
+              key.led_next: L1819
+              key.led_prev: L1718
+            top:
+              key.led_next: L1110
+              key.led_prev: L1211
+            number:
+              key.led_next: L0405
+              key.led_prev: L0304
         index:
           key:
-            column_net: P15
+            column_net: P6
             stagger: -3
           rows:
             arrows:
               shift: [0.25,0]
+              key.led_next: L3334
+              key.led_prev: L3233
+            bottom:
+              key.led_next: L2625
+              key.led_prev: L2726
+            home:
+              key.led_next: L1920
+              key.led_prev: L1819
+            top:
+              key.led_next: L1211
+              key.led_prev: L1312
+            number:
+              key.led_next: L0506
+              key.led_prev: L0405
         indexplus:
           key:
-            column_net: P14
+            column_net: P7
             stagger: -4
           rows:
             arrows:
               shift: [0.25,0]
               skip: true
             bottom:
+              key.led_next: L2726
+              key.led_prev: L2827
             home:
+              key.led_next: L2021
+              key.led_prev: L1920
             top:
+              key.led_next: L1312
+              key.led_prev: L1413
             number:
+              key.led_next: L0607
+              key.led_prev: L0506
         inside:
           key:
             column_net: P16
@@ -81,42 +156,60 @@ points:
             arrows:
               shift: [0.25,0]
               skip: true
+            bottom:
+              key.led_next: L2827
+              key.led_prev: L2128
+            home:
+              key.led_next: L2128
+              key.led_prev: L2021
+            top:
+              key.led_next: L1413
+              key.led_prev: L0714
+            number:
+              key.led_next: L0714
+              key.led_prev: L0607
       rows:
         arrows:
-          row_net: P7
+          row_net: P14
         bottom:
-          row_net: P6
+          row_net: P15
         home:
-          row_net: P5
+          row_net: P18
         top:
-          row_net: P4
+          row_net: P19
         number:
-          row_net: P3
+          row_net: P20
     left_thumb:
       anchor:
         ref: left_indexplus_arrows
         shift: [-4,-21]       
       key:
-        row_net: P7
+        column_net: P9
         stagger: -2.5
       columns:
         inside:
           rows:
             bottom:
+              rotate: 35
               splay: -60
-              shift: [0,0]
-              column_net: P14
+              shift: [-3,0]
+              row_net: P14
+              key.led_next: L3435
+              key.led_prev: L3334
         center:
           rows:
             bottom:
-              shift: [3,12.5]
-              column_net: P16
+              shift: [3,2.5]
+              row_net: P15
+              key.led_next: L3536
+              key.led_prev: L3435
         outside:
           rows:
             bottom:
-              column_net: P16
-              row_net: P8
               shift: [6,5]
+              row_net: P18
+              key.led_next:
+              key.led_prev: L3536
       rows:
         bottom:
   mirror: &mirror
@@ -314,8 +407,8 @@ pcbs:
       rgb:
         what: rgb
         params:
-          din: "{{name}}_in"
-          dout: "{{name}}_out"
+          din: "{{key.led_prev}}"
+          dout: "{{key.led_next}}"
           VCC: VCC
           GND: GND
         where: /^left_.*/
@@ -327,17 +420,8 @@ pcbs:
           orientation: "up"
         where:
           ref: left_middle_number
-          shift: [3.5*kx+32.75/2,py-17.78]
+          shift: [3.5*kx+32.75/2,py-17.78-.15]
           rotate: -90
-      reset:
-        what: button
-        where:
-          ref:
-            - left_inside_home
-          shift: [2*kx-2, 2.25]
-        params:
-          from: RST
-          to: GND
       trrs:
         what: trrs
         where:
@@ -347,7 +431,7 @@ pcbs:
         params:
           A: GND
           B: GND
-          C: P10
+          C: P21
           D: VCC
           reverse: false
           symmetric: false
@@ -355,13 +439,13 @@ pcbs:
         what: rotary
         where:
           ref: left_inside_bottom
-          shift: [0, -2.5ky]
+          shift: [0.128+0.5kx, -1.5ky]
         params:
-          from: P22
-          to: P23
-          A: P20
+          from: P9
+          to: P19
+          A: P8
           B: GND
-          C: P21
+          C: P10
   mrkeyboard_right:
     outlines:
       right:
@@ -390,8 +474,8 @@ pcbs:
       rgb:
         what: rgb
         params:
-          din: "{{name}}_in"
-          dout: "{{name}}_out"
+          din: "{{key.led_prev}}"
+          dout: "{{key.led_next}}"
           VCC: VCC
           GND: GND
         where: /^mirror_.*/
@@ -405,15 +489,6 @@ pcbs:
           ref: mirror_left_middle_number
           shift: [3.5*kx+32.75/2,py-17.78]
           rotate: 90
-      reset:
-        what: button
-        where:
-          ref:
-            - mirror_left_inside_home
-          shift: [2*kx-2, 2.25]
-        params:
-          from: RST
-          to: GND
       trrs:
         what: trrs
         where:
