@@ -187,31 +187,31 @@ points:
         column_net: P9
         stagger: -2.5
       columns:
-        inside:
+        tinside:
           rows:
-            bottom:
+            tbottom:
               rotate: 35
               splay: -60
               shift: [-3,0]
               row_net: P14
               key.led_next: L3435
               key.led_prev: L3334
-        center:
+        tcenter:
           rows:
-            bottom:
+            tbottom:
               shift: [3,2.5]
               row_net: P15
               key.led_next: L3536
               key.led_prev: L3435
-        outside:
+        toutside:
           rows:
-            bottom:
+            tbottom:
               shift: [6,5]
               row_net: P18
               key.led_next:
               key.led_prev: L3536
       rows:
-        bottom:
+        tbottom:
   mirror: &mirror
     ref: left_inside_number
     distance: 5kx
@@ -223,11 +223,11 @@ outlines:
           shift: [-px,py]
         - ref: left_far_arrows
           shift: [-px,-py]
-        - ref: left_thumb_inside_bottom
+        - ref: left_thumb_tinside_tbottom
           shift: [-px,-py]
-        - ref: left_thumb_outside_bottom
+        - ref: left_thumb_toutside_tbottom
           shift: [px,-py]
-        - ref: left_thumb_outside_bottom
+        - ref: left_thumb_toutside_tbottom
           shift: [px,2py-2.25]
         - ref: left_inside_bottom
           shift: [kx/2+32.75,-3*ky]
@@ -303,11 +303,11 @@ outlines:
           shift: [-px,py]
         - ref: mirror_left_far_arrows
           shift: [-px,-py]
-        - ref: mirror_left_thumb_inside_bottom
+        - ref: mirror_left_thumb_tinside_tbottom
           shift: [-px,-py]
-        - ref: mirror_left_thumb_outside_bottom
+        - ref: mirror_left_thumb_toutside_tbottom
           shift: [px,-py]
-        - ref: mirror_left_thumb_outside_bottom
+        - ref: mirror_left_thumb_toutside_tbottom
           shift: [px,2py-2.25]
         - ref: mirror_left_inside_bottom
           shift: [kx/2+32.75,-3*ky]
@@ -402,15 +402,19 @@ pcbs:
           to: "{{row_net}}"
         where: /^left_.*/
         adjust:
-          shift: [-8, 3.5]
+          shift: [-8.27, 3.5]
           rotate: 270
       rgb:
-        what: rgb
+        what: sk6812minie
         params:
-          din: "{{key.led_prev}}"
-          dout: "{{key.led_next}}"
-          VCC: VCC
-          GND: GND
+          P1: VCC
+          P2: "{{key.led_next}}"
+          P3: GND
+          P4: "{{key.led_prev}}"
+          side: F
+          reversible: false
+          reverse_mount: false
+          include_traces_vias: false
         where: /^left_.*/
         adjust:
           shift: [0, 4.7]
@@ -472,12 +476,16 @@ pcbs:
           shift: [8, 3.5]
           rotate: 90
       rgb:
-        what: rgb
+        what: sk6812minie
         params:
-          din: "{{key.led_prev}}"
-          dout: "{{key.led_next}}"
-          VCC: VCC
-          GND: GND
+          P1: VCC
+          P2: "{{key.led_next}}"
+          P3: GND
+          P4: "{{key.led_prev}}"
+          side: F
+          reversible: false
+          reverse_mount: false
+          include_traces_vias: false
         where: /^mirror_.*/
         adjust:
           shift: [0, 4.7]
