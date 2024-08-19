@@ -43,7 +43,7 @@ points:
               led_prev: L0908
             number.key:
               led_next: L0102
-              led_prev: P1
+              led_prev: L0001
         pinkie:
           key:
             stagger: -1.5
@@ -216,7 +216,7 @@ points:
     ref: left_inside_number
     distance: 5kx
 outlines:
-  polygon_left:
+  _polygon_left:
     - what: polygon
       points:
         - ref: left_far_number
@@ -241,62 +241,62 @@ outlines:
           shift: [-kx,27]
         - ref: left_middle_number
           shift: [0,py-1.6]
-  roundedpoly_left:
+  _roundedpoly_left:
     - what: outline
-      name: polygon_left
+      name: _polygon_left
       fillet: 10
-  arc_circle:
+  _arc_circle:
     - what: circle
       adjust:
         ref: left_middle_number
         shift: [0,-20]
       radius: 700
-  arc_rectangle:
+  _arc_rectangle:
     - what: rectangle
       adjust:
         ref: left_middle_number
         shift: [0,-24]
       size: 1400
-  arc_top:
-    - name: arc_circle
-    - name: arc_rectangle
+  _arc_top:
+    - name: _arc_circle
+    - name: _arc_rectangle
       operation: subtract
-  top_right_fillet:
+  _top_right_fillet:
     - what: rectangle
       adjust:
         ref: left_inside_number
         shift: [34.75,19.5]
       size: 15
       fillet: 5
-  top_right_rectangle_left:
+  _top_right_rectangle_left:
     - what: rectangle
       adjust:
         ref: left_inside_number
         shift: [30,19]
       size: 15
-  top_right_rectangle_bottom:
+  _top_right_rectangle_bottom:
     - what: rectangle
       adjust:
         ref: left_inside_number
         shift: [34,16]
       size: 15
-  top_right_rectangle:
-    - name: top_right_rectangle_bottom
-    - name: top_right_rectangle_left
+  _top_right_rectangle:
+    - name: _top_right_rectangle_bottom
+    - name: _top_right_rectangle_left
       operation: add
-  top_right_curve:
-    - name: top_right_fillet
-    - name: top_right_rectangle
+  _top_right_curve:
+    - name: _top_right_fillet
+    - name: _top_right_rectangle
       operation: add
   combined_left:
-    - name: roundedpoly_left
-    - name: top_right_curve
-    - name: arc_top
+    - name: _roundedpoly_left
+    - name: _top_right_curve
+    - name: _arc_top
       adjust:
         shift: [34,-667.725]
         rotate: 4
       operation: add
-  polygon_right:
+  _polygon_right:
     - what: polygon
       points:
         - ref: mirror_left_far_number
@@ -321,62 +321,62 @@ outlines:
           shift: [-kx,27]
         - ref: mirror_left_middle_number
           shift: [0,py-1.6]
-  roundedpoly_right:
+  _roundedpoly_right:
     - what: outline
-      name: polygon_right
+      name: _polygon_right
       fillet: 10
-  top_left_fillet:
+  _top_left_fillet:
     - what: rectangle
       adjust:
         ref: mirror_left_inside_number
         shift: [34.75,19.5]
       size: 15
       fillet: 5
-  top_left_rectangle_right:
+  _top_left_rectangle_right:
     - what: rectangle
       adjust:
         ref: mirror_left_inside_number
         shift: [30,19]
       size: 15
-  top_left_rectangle_bottom:
+  _top_left_rectangle_bottom:
     - what: rectangle
       adjust:
         ref: mirror_left_inside_number
         shift: [34,16]
       size: 15
-  top_left_rectangle:
-    - name: top_left_rectangle_bottom
-    - name: top_left_rectangle_right
+  _top_left_rectangle:
+    - name: _top_left_rectangle_bottom
+    - name: _top_left_rectangle_right
       operation: add
-  top_left_curve:
-    - name: top_left_fillet
-    - name: top_left_rectangle
+  _top_left_curve:
+    - name: _top_left_fillet
+    - name: _top_left_rectangle
       operation: add
   combined_right:
-    - name: roundedpoly_right
-    - name: top_left_curve
-    - name: arc_top
+    - name: _roundedpoly_right
+    - name: _top_left_curve
+    - name: _arc_top
       adjust:
         shift: [176.5,-653.05]
         rotate: -4
       operation: add
-  switch_cutouts_left:
+  _switch_cutouts_left:
     left:
       what: rectangle
       where: /^left_.*/
       size: 13.8
-  switch_cutouts_right:
+  _switch_cutouts_right:
     right:
       what: rectangle
       where: /^mirror_.*/
       size: 13.8
   test_print_left:
     - name: combined_left
-    - name: switch_cutouts_left
+    - name: _switch_cutouts_left
       operation: subtract
   test_print_right:
     - name: combined_right
-    - name: switch_cutouts_right
+    - name: _switch_cutouts_right
       operation: subtract
 pcbs:
   mrkeyboard_left:
@@ -407,7 +407,7 @@ pcbs:
       rgb:
         what: sk6812minie
         params:
-          P1: VCC
+          P1: 5V
           P2: "{{key.led_next}}"
           P3: GND
           P4: "{{key.led_prev}}"
@@ -415,17 +415,81 @@ pcbs:
           reversible: false
           reverse_mount: false
           include_traces_vias: false
-        where: /^left_.*/
+        where: /^left_.*_(number|home|arrows|tbottom)$/
         adjust:
           shift: [0, 4.7]
-      promicro:
-        what: promicro
+      rgb_flipped:
+        what: sk6812minie
         params:
-          orientation: "up"
+          P1: 5V
+          P2: "{{key.led_next}}"
+          P3: GND
+          P4: "{{key.led_prev}}"
+          side: F
+          reversible: false
+          reverse_mount: false
+          include_traces_vias: false
+        where: /^left_.*_(top|bottom)$/
+        adjust:
+          shift: [0, 4.7]
+          rotate: 180
+      rgb_status:
+        what: sk6812minie
+        params:
+          P1: 5V
+          P2: L0001
+          P3: GND
+          P4: P25-RGB
+          side: F
+          reversible: false
+          reverse_mount: false
+          include_traces_vias: false
+        where:
+          ref: left_inside_number
+          shift: [0, 24.5]
+          rotate: 180
+        adjust:
+          shift: [0, 4.7]
+      controller:
+        what: helios_ah_usbup
+        params:
+          P31: P10
+          P1: P0
+          P2: P1
+          P3: GND
+          P4: GND
+          P5: P2
+          P6: P3
+          P7: P4
+          P8: P5
+          P9: P6
+          P10: P7
+          P11: P8
+          P12: P9
+          P34: P25-RGB
+          P25: P12
+          P26: P13
+          P27: P14
+          P28: P15
+          P29: P16
+          P24: P21
+          P23: P23
+          P22: P20
+          P21: P22
+          P20: P26
+          P19: P27
+          P18: P28
+          P17: P29
+          P16: 3V3
+          P15: RST
+          P14: GND
+          P13: 5V
+          P30: P11
+          P32: D+
+          P33: D-
         where:
           ref: left_middle_number
           shift: [3.5*kx+32.75/2,py-17.78-.15]
-          rotate: -90
       trrs:
         what: trrs
         where:
@@ -434,8 +498,8 @@ pcbs:
           rotate: -90
         params:
           A: GND
-          B: GND
-          C: P21
+          B: P2
+          C: P3
           D: VCC
           reverse: false
           symmetric: false
@@ -449,7 +513,7 @@ pcbs:
           to: P19
           A: P8
           B: GND
-          C: P10
+          C: P12
   mrkeyboard_right:
     outlines:
       right:
@@ -478,7 +542,7 @@ pcbs:
       rgb:
         what: sk6812minie
         params:
-          P1: VCC
+          P1: 5V
           P2: "{{key.led_next}}"
           P3: GND
           P4: "{{key.led_prev}}"
@@ -486,17 +550,82 @@ pcbs:
           reversible: false
           reverse_mount: false
           include_traces_vias: false
-        where: /^mirror_.*/
+        where: /^mirror_.*_(top|bottom)$/
         adjust:
           shift: [0, 4.7]
-      promicro:
-        what: promicro
+      rgb_flipped:
+        what: sk6812minie
         params:
-          orientation: "up"
+          P1: 5V
+          P2: "{{key.led_next}}"
+          P3: GND
+          P4: "{{key.led_prev}}"
+          side: F
+          reversible: false
+          reverse_mount: false
+          include_traces_vias: false
+        where: /^mirror_.*_(number|home|arrows|tbottom)$/
+        adjust:
+          shift: [0, 4.7]
+          rotate: 180
+      rgb_status:
+        what: sk6812minie
+        params:
+          P1: 5V
+          P2: L0001
+          P3: GND
+          P4: P25-RGB
+          side: F
+          reversible: false
+          reverse_mount: false
+          include_traces_vias: false
+        where:
+          ref: mirror_left_inside_number
+          shift: [0, 24.5]
+          rotate: 180
+        adjust:
+          shift: [0, 4.7]
+          rotate: 180
+      controller:
+        what: helios_ah_usbup
+        params:
+          P31: P10
+          P1: P0
+          P2: P1
+          P3: GND
+          P4: GND
+          P5: P2
+          P6: P3
+          P7: P4
+          P8: P5
+          P9: P6
+          P10: P7
+          P11: P8
+          P12: P9
+          P34: P25-RGB
+          P25: P12
+          P26: P13
+          P27: P14
+          P28: P15
+          P29: P16
+          P24: P21
+          P23: P23
+          P22: P20
+          P21: P22
+          P20: P26
+          P19: P27
+          P18: P28
+          P17: P29
+          P16: 3V3
+          P15: RST
+          P14: GND
+          P13: 5V
+          P30: P11
+          P32: D+
+          P33: D-
         where:
           ref: mirror_left_middle_number
           shift: [3.5*kx+32.75/2,py-17.78]
-          rotate: 90
       trrs:
         what: trrs
         where:
@@ -505,11 +634,22 @@ pcbs:
           rotate: -90
         params:
           A: GND
-          B: GND
-          C: P10
+          B: P2
+          C: P3
           D: VCC
           reverse: false
           symmetric: false
+      knob:
+        what: rotary
+        where:
+          ref: left_inside_bottom
+          shift: [-0.128+0.5kx, -1.5ky]
+        params:
+          from: P9
+          to: P19
+          A: P8
+          B: GND
+          C: P12
 cases:
   left:
     - name: combined_left
