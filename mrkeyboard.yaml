@@ -497,17 +497,30 @@ pcbs:
           shift: [42.25, 10]
           rotate: -90
         params:
-          A: GND
-          B: P2
-          C: P3
-          D: VCC
+          A: VCC
+          B: P3
+          C: P2
+          D: GND
           reverse: false
           symmetric: false
-      knob:
+      roller_encoder:
+        what: scrollwheel
+        where:
+          ref: left_inside_bottom
+          shift: [-6, -1.25ky]
+          rotate: 60
+        params:
+          from: P9
+          to: P19
+          A: GND
+          B: P8
+          C: P12
+          D: P13
+      rotary_encoder:
         what: rotary
         where:
           ref: left_inside_bottom
-          shift: [0.128+0.5kx, -1.5ky]
+          shift: [1.5kx, -0.5ky]
         params:
           from: P9
           to: P19
@@ -633,17 +646,30 @@ pcbs:
           shift: [42.25, 10]
           rotate: -90
         params:
-          A: GND
-          B: P2
-          C: P3
-          D: VCC
+          A: VCC
+          B: P3
+          C: P2
+          D: GND
           reverse: false
           symmetric: false
-      knob:
+      roller_encoder:
+        what: scrollwheel
+        where:
+          ref: left_inside_bottom
+          shift: [-0.5kx, -1.5ky]
+          rotate: -60
+        params:
+          from: P9
+          to: P19
+          A: GND
+          B: P8
+          C: P12
+          D: P13
+      rotary_encoder:
         what: rotary
         where:
           ref: left_inside_bottom
-          shift: [-0.128+0.5kx, -1.5ky]
+          shift: [-kx, -0.5ky]
         params:
           from: P9
           to: P19
