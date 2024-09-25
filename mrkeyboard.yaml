@@ -190,16 +190,15 @@ points:
         tinside:
           rows:
             tbottom:
-              rotate: 35
               splay: -60
-              shift: [-3,0]
+              shift: [-0,0]
               row_net: P14
               key.led_next: L3435
               key.led_prev: L3334
         tcenter:
           rows:
             tbottom:
-              shift: [3,2.5]
+              shift: [3,12.5]
               row_net: P15
               key.led_next: L3536
               key.led_prev: L3435
@@ -370,13 +369,51 @@ outlines:
       what: rectangle
       where: /^mirror_.*/
       size: 13.8
+  _roller_encoder_left:
+    left:
+      what: rectangle
+      where:
+        ref: left_thumb_tinside_tbottom
+        shift: [-2, 13.8+19]
+      size: [16.75, 13.75]
+  _rotary_encoder_left:
+    left:
+      what: rectangle
+      where:
+        ref: left_inside_bottom
+        shift: [1.5kx, -53]
+      size: [14.75, 12]
+  _all_cutouts_left:
+    - name: _switch_cutouts_left
+    - name: _roller_encoder_left
+    - name: _rotary_encoder_left
+      operation: add
+  _roller_encoder_right:
+    left:
+      what: rectangle
+      where:
+        ref: mirror_left_thumb_tinside_tbottom
+        shift: [-2, 13.8+19]
+      size: [16.75, 13.75]
+  _rotary_encoder_right:
+    left:
+      what: rectangle
+      where:
+        ref: mirror_left_inside_bottom
+        shift: [1.5kx, -53]
+      size: [14.75, 12]
+  _all_cutouts_right:
+    - name: _switch_cutouts_right
+    - name: _roller_encoder_right
+    - name: _rotary_encoder_right
+      operation: add
   test_print_left:
     - name: combined_left
-    - name: _switch_cutouts_left
+    - name: _all_cutouts_left
       operation: subtract
   test_print_right:
     - name: combined_right
-    - name: _switch_cutouts_right
+    - name: _all_cutouts_right
       operation: subtract
 pcbs:
   mrkeyboard_left:
@@ -506,9 +543,8 @@ pcbs:
       roller_encoder:
         what: scrollwheel
         where:
-          ref: left_inside_bottom
-          shift: [-6, -1.25ky]
-          rotate: 60
+          ref: left_thumb_tinside_tbottom
+          shift: [-2, 1.5ky]
         params:
           from: P9
           to: P19
@@ -520,7 +556,7 @@ pcbs:
         what: rotary
         where:
           ref: left_inside_bottom
-          shift: [1.5kx, -0.5ky]
+          shift: [1.5kx, -53]
         params:
           from: P9
           to: P19
@@ -655,9 +691,8 @@ pcbs:
       roller_encoder:
         what: scrollwheel
         where:
-          ref: left_inside_bottom
-          shift: [-0.5kx, -1.5ky]
-          rotate: -60
+          ref: mirror_left_thumb_tinside_tbottom
+          shift: [-2, 1.5ky]
         params:
           from: P9
           to: P19
@@ -668,8 +703,8 @@ pcbs:
       rotary_encoder:
         what: rotary
         where:
-          ref: left_inside_bottom
-          shift: [-kx, -0.5ky]
+          ref: mirror_left_inside_bottom
+          shift: [1.5kx, -53]
         params:
           from: P9
           to: P19
