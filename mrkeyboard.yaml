@@ -25,7 +25,7 @@ points:
         far:
           key:
             splay: 8.5
-            column_net: P2
+            column_net: P11
           rows:
             arrows:
               shift: [-1,0]
@@ -47,7 +47,7 @@ points:
         pinkie:
           key:
             stagger: -1.5
-            column_net: P3
+            column_net: P8
           rows:
             arrows:
               shift: [-1,0]
@@ -68,7 +68,7 @@ points:
         ring:
           key:
             splay: -3.5
-            column_net: P4
+            column_net: P7
           rows:
             arrows:
               shift: [-0.5,0]
@@ -90,7 +90,7 @@ points:
           key:
             splay: -5
             stagger: 2
-            column_net: P5
+            column_net: P6
           rows:
             arrows:
               shift: [0.25,0]
@@ -110,7 +110,7 @@ points:
               key.led_prev: L0304
         index:
           key:
-            column_net: P6
+            column_net: P5
             stagger: -3
           rows:
             arrows:
@@ -131,7 +131,7 @@ points:
               key.led_prev: L0405
         indexplus:
           key:
-            column_net: P7
+            column_net: P4
             stagger: -4
           rows:
             arrows:
@@ -151,7 +151,7 @@ points:
               key.led_prev: L0506
         inside:
           key:
-            column_net: P16
+            column_net: P10
           rows:
             arrows:
               shift: [0.25,0]
@@ -374,8 +374,8 @@ outlines:
       what: rectangle
       where:
         ref: left_thumb_tinside_tbottom
-        shift: [-2, 13.8+19]
-      size: [16.75, 13.75]
+        shift: [-2, 12+19]
+      size: [16.89, 14]
   _rotary_encoder_left:
     left:
       what: rectangle
@@ -393,8 +393,8 @@ outlines:
       what: rectangle
       where:
         ref: mirror_left_thumb_tinside_tbottom
-        shift: [-2, 13.8+19]
-      size: [16.75, 13.75]
+        shift: [-2, 12+19]
+      size: [16.89, 14]
   _rotary_encoder_right:
     left:
       what: rectangle
@@ -483,10 +483,7 @@ pcbs:
           include_traces_vias: false
         where:
           ref: left_inside_number
-          shift: [0, 24.5]
-          rotate: 180
-        adjust:
-          shift: [0, 4.7]
+          shift: [0, 19.8]
       controller:
         what: helios_ah_usbup
         params:
@@ -630,10 +627,8 @@ pcbs:
           include_traces_vias: false
         where:
           ref: mirror_left_inside_number
-          shift: [0, 24.5]
-          rotate: 180
+          shift: [0, 29.2]
         adjust:
-          shift: [0, 4.7]
           rotate: 180
       controller:
         what: helios_ah_usbup
