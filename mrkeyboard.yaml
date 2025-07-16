@@ -1,6 +1,8 @@
 units:
-  #cx:18
-  #cy:17
+  U: 19.05 # 19.05mm MX spacing
+  u: 19 # 19mm MX spacing
+  cx: 18 # 18mm Choc X spacing
+  cy: 17 # 17mm Choc Y spacing
   # Proxy Spacing Variables
   kx: cx + 1
   ky: cy + 1
@@ -364,12 +366,29 @@ outlines:
       what: rectangle
       where: /^left_.*/
       size: 13.8
+  _switch_cutouts_left_big:
+    left:
+      what: rectangle
+      where: /^left_.*/
+      size: 14
   _switch_cutouts_right:
     right:
       what: rectangle
       where: /^mirror_.*/
       size: 13.8
+  _switch_cutouts_right_big:
+    left:
+      what: rectangle
+      where: /^left_.*/
+      size: 14
   _roller_encoder_left:
+    left:
+      what: rectangle
+      where:
+        ref: left_thumb_tinside_tbottom
+        shift: [-2, 12+19]
+      size: [16.89, 14]
+  _roller_encoder_left_big:
     left:
       what: rectangle
       where:
@@ -383,12 +402,31 @@ outlines:
         ref: left_inside_bottom
         shift: [1.5kx, -53]
       size: [14.75, 12]
+  _rotary_encoder_left_big:
+    left:
+      what: rectangle
+      where:
+        ref: left_inside_bottom
+        shift: [1.5kx, -53]
+      size: [14.75, 12]
   _all_cutouts_left:
     - name: _switch_cutouts_left
     - name: _roller_encoder_left
     - name: _rotary_encoder_left
       operation: add
+  _all_cutouts_left_big:
+    - name: _switch_cutouts_left_big
+    - name: _roller_encoder_left_big
+    - name: _rotary_encoder_left_big
+      operation: add
   _roller_encoder_right:
+    left:
+      what: rectangle
+      where:
+        ref: mirror_left_thumb_tinside_tbottom
+        shift: [-2, 12+19]
+      size: [16.89, 14]
+  _roller_encoder_right_big:
     left:
       what: rectangle
       where:
@@ -402,10 +440,22 @@ outlines:
         ref: mirror_left_inside_bottom
         shift: [1.5kx, -53]
       size: [14.75, 12]
+  _rotary_encoder_right_big:
+    left:
+      what: rectangle
+      where:
+        ref: mirror_left_inside_bottom
+        shift: [1.5kx, -53]
+      size: [14.75, 12]
   _all_cutouts_right:
     - name: _switch_cutouts_right
     - name: _roller_encoder_right
     - name: _rotary_encoder_right
+      operation: add
+  _all_cutouts_right_big:
+    - name: _switch_cutouts_right_big
+    - name: _roller_encoder_right_big
+    - name: _rotary_encoder_right_big
       operation: add
   test_print_left:
     - name: combined_left
@@ -415,6 +465,12 @@ outlines:
     - name: combined_right
     - name: _all_cutouts_right
       operation: subtract
+  _expanded_left_base_outline:
+    - name: combined_left # Start with your existing plate outline
+      expand: 3
+  _expanded_right_base_outline:
+    - name: combined_right # Start with your existing plate outline
+      expand: 3
 pcbs:
   mrkeyboard_left:
     outlines:
@@ -707,11 +763,50 @@ pcbs:
           B: GND
           C: P12
 cases:
-  left:
+  left_plate:
     - name: combined_left
-      operation: add
-      extrude: 1
-  right:
+      extrude: 2.3
+    - name: _all_cutouts_left_big
+      operation: subtract
+      extrude: 1.0
+    - name: _all_cutouts_left
+      operation: subtract
+      extrude: 2.4
+  left_base:
+    - name: combined_left
+      extrude: 5
+  left_base2:
+    - name: _expanded_left_base_outline
+      extrude: 15
+    - name: combined_left
+      operation: subtract
+      extrude: 13
+#    - what: circle
+#      where: /^left_mount_.*/
+#      operation: subtract
+#      radius: 1.5
+#      extrude: 16
+  right_plate:
     - name: combined_right
-      operation: add
-      extrude: 1
+      extrude: 2.3
+    - name: _all_cutouts_right
+      operation: subtract
+      extrude: 2.4
+    - name: _all_cutouts_right_big
+      operation: subtract
+      extrude: 1.0
+  right_base:
+    - name: combined_right
+      extrude: 5
+  right_base2:
+    - name: _expanded_right_base_outline
+      extrude: 15
+    - name: combined_right
+      operation: subtract
+      extrude: 13
+      rotate: [180, 0, 0]
+#    - what: circle
+#      where: /^right_mount_.*/
+#      operation: subtract
+#      radius: 1.5
+#      extrude: 16
