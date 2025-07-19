@@ -31,19 +31,20 @@ points:
           rows:
             arrows:
               shift: [-1,0]
-              key:
-                led_next: L2930
-                led_prev: L2229
-            bottom.key:
+              led_next: L2930
+              led_prev: L2229
+            bottom:
               led_next: L2229
               led_prev: L2322
-            home.key:
+            home:
               led_next: L1516
               led_prev: L0815
-            top.key:
+            top:
+              rotate: -3.5
+              shift: [3.8275, 0.5]
               led_next: L0815
               led_prev: L0908
-            number.key:
+            number:
               led_next: L0102
               led_prev: L0001
         pinkie:
@@ -53,20 +54,22 @@ points:
           rows:
             arrows:
               shift: [-1,0]
-              key.led_next: L3031
-              key.led_prev: L2930
+              led_next: L3031
+              led_prev: L2930
             bottom:
-              key.led_next: L2322
-              key.led_prev: L2423
+              led_next: L2322
+              led_prev: L2423
             home:
-              key.led_next: L1617
-              key.led_prev: L1516
+              led_next: L1617
+              led_prev: L1516
             top:
-              key.led_next: L0908
-              key.led_prev: L1009
+              rotate: -3.5
+              shift: [3.8275, 1]
+              led_next: L0908
+              led_prev: L1009
             number:
-              key.led_next: L0203
-              key.led_prev: L0102
+              led_next: L0203
+              led_prev: L0102
         ring:
           key:
             splay: -3.5
@@ -74,20 +77,20 @@ points:
           rows:
             arrows:
               shift: [-0.5,0]
-              key.led_next: L3132
-              key.led_prev: L3031
+              led_next: L3132
+              led_prev: L3031
             bottom:
-              key.led_next: L2423
-              key.led_prev: L2524
+              led_next: L2423
+              led_prev: L2524
             home:
-              key.led_next: L1718
-              key.led_prev: L1617
+              led_next: L1718
+              led_prev: L1617
             top:
-              key.led_next: L1009
-              key.led_prev: L1110
+              led_next: L1009
+              led_prev: L1110
             number:
-              key.led_next: L0304
-              key.led_prev: L0203
+              led_next: L0304
+              led_prev: L0203
         middle:
           key:
             splay: -5
@@ -96,20 +99,20 @@ points:
           rows:
             arrows:
               shift: [0.25,0]
-              key.led_next: L3233
-              key.led_prev: L3132
+              led_next: L3233
+              led_prev: L3132
             bottom:
-              key.led_next: L2524
-              key.led_prev: L2625
+              led_next: L2524
+              led_prev: L2625
             home:
-              key.led_next: L1819
-              key.led_prev: L1718
+              led_next: L1819
+              led_prev: L1718
             top:
-              key.led_next: L1110
-              key.led_prev: L1211
+              led_next: L1110
+              led_prev: L1211
             number:
-              key.led_next: L0405
-              key.led_prev: L0304
+              led_next: L0405
+              led_prev: L0304
         index:
           key:
             column_net: P5
@@ -117,20 +120,20 @@ points:
           rows:
             arrows:
               shift: [0.25,0]
-              key.led_next: L3334
-              key.led_prev: L3233
+              led_next: L3334
+              led_prev: L3233
             bottom:
-              key.led_next: L2625
-              key.led_prev: L2726
+              led_next: L2625
+              led_prev: L2726
             home:
-              key.led_next: L1920
-              key.led_prev: L1819
+              led_next: L1920
+              led_prev: L1819
             top:
-              key.led_next: L1211
-              key.led_prev: L1312
+              led_next: L1211
+              led_prev: L1312
             number:
-              key.led_next: L0506
-              key.led_prev: L0405
+              led_next: L0506
+              led_prev: L0405
         indexplus:
           key:
             column_net: P4
@@ -140,17 +143,17 @@ points:
               shift: [0.25,0]
               skip: true
             bottom:
-              key.led_next: L2726
-              key.led_prev: L2827
+              led_next: L2726
+              led_prev: L2827
             home:
-              key.led_next: L2021
-              key.led_prev: L1920
+              led_next: L2021
+              led_prev: L1920
             top:
-              key.led_next: L1312
-              key.led_prev: L1413
+              led_next: L1312
+              led_prev: L1413
             number:
-              key.led_next: L0607
-              key.led_prev: L0506
+              led_next: L0607
+              led_prev: L0506
         inside:
           key:
             column_net: P10
@@ -159,17 +162,17 @@ points:
               shift: [0.25,0]
               skip: true
             bottom:
-              key.led_next: L2827
-              key.led_prev: L2128
+              led_next: L2827
+              led_prev: L2128
             home:
-              key.led_next: L2128
-              key.led_prev: L2021
+              led_next: L2128
+              led_prev: L2021
             top:
-              key.led_next: L1413
-              key.led_prev: L0714
+              led_next: L1413
+              led_prev: L0714
             number:
-              key.led_next: L0714
-              key.led_prev: L0607
+              led_next: L0714
+              led_prev: L0607
       rows:
         arrows:
           row_net: P14
@@ -195,22 +198,25 @@ points:
               splay: -60
               shift: [-0,0]
               row_net: P14
-              key.led_next: L3435
-              key.led_prev: L3334
-        tcenter:
+              led_next: L3435
+              led_prev: L3334
+            ttop:
+        tmiddle:
           rows:
             tbottom:
               shift: [3,12.5]
               row_net: P15
-              key.led_next: L3536
-              key.led_prev: L3435
+              led_next: L3536
+              led_prev: L3435
+            ttop:
         toutside:
           rows:
             tbottom:
               shift: [6,5]
               row_net: P18
-              key.led_next:
-              key.led_prev: L3536
+              led_next:
+              led_prev: L3536
+            ttop:
       rows:
         tbottom:
   mirror: &mirror
@@ -222,81 +228,28 @@ outlines:
       points:
         - ref: left_far_number
           shift: [-px,py]
+        - ref: left_far_bottom
+          shift: [-px/1.1, 0]
         - ref: left_far_arrows
-          shift: [-px,-py]
-        - ref: left_thumb_tinside_tbottom
-          shift: [-px,-py]
+          shift: [-2px,py/1.1]
+        - ref: left_far_arrows
+          shift: [-2px,-py]
+        - ref: left_middle_arrows
+          shift: [0,-py]
+        - ref: left_thumb_tmiddle_tbottom
+          shift: [0,-py]
         - ref: left_thumb_toutside_tbottom
           shift: [px,-py]
-        - ref: left_thumb_toutside_tbottom
-          shift: [px,2py-2.25]
         - ref: left_inside_bottom
-          shift: [kx/2+32.75,-3*ky]
+          shift: [kx/2+32.75,-4.4ky]
         - ref: left_middle_number
           shift: [3.5*kx+32.75,py]
-        - ref: left_inside_number
-          shift: [0,27]
-        - ref: left_inside_number
-          shift: [-kx/2,27]
-        - ref: left_inside_number
-          shift: [-kx,27]
         - ref: left_middle_number
-          shift: [0,py-1.6]
-  _roundedpoly_left:
+          shift: [-px/1.5,py]
+  combined_left:
     - what: outline
       name: _polygon_left
       fillet: 10
-  _arc_circle:
-    - what: circle
-      adjust:
-        ref: left_middle_number
-        shift: [0,-20]
-      radius: 700
-  _arc_rectangle:
-    - what: rectangle
-      adjust:
-        ref: left_middle_number
-        shift: [0,-24]
-      size: 1400
-  _arc_top:
-    - name: _arc_circle
-    - name: _arc_rectangle
-      operation: subtract
-  _top_right_fillet:
-    - what: rectangle
-      adjust:
-        ref: left_inside_number
-        shift: [34.75,19.5]
-      size: 15
-      fillet: 5
-  _top_right_rectangle_left:
-    - what: rectangle
-      adjust:
-        ref: left_inside_number
-        shift: [30,19]
-      size: 15
-  _top_right_rectangle_bottom:
-    - what: rectangle
-      adjust:
-        ref: left_inside_number
-        shift: [34,16]
-      size: 15
-  _top_right_rectangle:
-    - name: _top_right_rectangle_bottom
-    - name: _top_right_rectangle_left
-      operation: add
-  _top_right_curve:
-    - name: _top_right_fillet
-    - name: _top_right_rectangle
-      operation: add
-  combined_left:
-    - name: _roundedpoly_left
-    - name: _top_right_curve
-    - name: _arc_top
-      adjust:
-        shift: [34,-667.725]
-        rotate: 4
-      operation: add
   _polygon_right:
     - what: polygon
       points:
@@ -326,37 +279,8 @@ outlines:
     - what: outline
       name: _polygon_right
       fillet: 10
-  _top_left_fillet:
-    - what: rectangle
-      adjust:
-        ref: mirror_left_inside_number
-        shift: [34.75,19.5]
-      size: 15
-      fillet: 5
-  _top_left_rectangle_right:
-    - what: rectangle
-      adjust:
-        ref: mirror_left_inside_number
-        shift: [30,19]
-      size: 15
-  _top_left_rectangle_bottom:
-    - what: rectangle
-      adjust:
-        ref: mirror_left_inside_number
-        shift: [34,16]
-      size: 15
-  _top_left_rectangle:
-    - name: _top_left_rectangle_bottom
-    - name: _top_left_rectangle_right
-      operation: add
-  _top_left_curve:
-    - name: _top_left_fillet
-    - name: _top_left_rectangle
-      operation: add
   combined_right:
     - name: _roundedpoly_right
-    - name: _top_left_curve
-    - name: _arc_top
       adjust:
         shift: [176.5,-653.05]
         rotate: -4
@@ -385,29 +309,29 @@ outlines:
     left:
       what: rectangle
       where:
-        ref: left_thumb_tinside_tbottom
-        shift: [-2, 12+19]
+        ref: left_far_arrows
+        shift: [-kx, 0]
       size: [16.89, 14]
   _roller_encoder_left_big:
     left:
       what: rectangle
       where:
-        ref: left_thumb_tinside_tbottom
-        shift: [-2, 12+19]
+        ref: left_far_arrows
+        shift: [-kx, 0]
       size: [16.89, 14]
   _rotary_encoder_left:
     left:
       what: rectangle
       where:
         ref: left_inside_bottom
-        shift: [1.5kx, -53]
+        shift: [1.3kx, 0]
       size: [14.75, 12]
   _rotary_encoder_left_big:
     left:
       what: rectangle
       where:
         ref: left_inside_bottom
-        shift: [1.5kx, -53]
+        shift: [kx, 0]
       size: [14.75, 12]
   _all_cutouts_left:
     - name: _switch_cutouts_left
@@ -466,11 +390,67 @@ outlines:
     - name: _all_cutouts_right
       operation: subtract
   _expanded_left_base_outline:
-    - name: combined_left # Start with your existing plate outline
+    - name: combined_left
       expand: 3
   _expanded_right_base_outline:
-    - name: combined_right # Start with your existing plate outline
+    - name: combined_right
       expand: 3
+  _mounting_hole_1:
+    left:
+      what: circle
+      where:
+        ref: left_far_number
+        shift: [-.6px, .6py]
+      radius: 2.5
+  _mounting_hole_2:
+    left:
+      what: circle
+      where:
+        ref: left_far_bottom
+        shift: [-3px/4, -py/8]
+      radius: 2.5
+  _mounting_hole_3:
+    left:
+      what: circle
+      where:
+        ref: left_middle_arrows
+        shift: [0, -0.7py]
+      radius: 2.5
+  _mounting_hole_4:
+    left:
+      what: circle
+      where:
+        ref: left_thumb_tmiddle_tbottom
+        shift: [0, -0.7py]
+      radius: 2.5
+  _mounting_hole_5:
+    left:
+      what: circle
+      where:
+        ref: left_thumb_toutside_ttop
+        shift: [0, py]
+      radius: 2.5
+  _mounting_hole_6:
+    left:
+      what: circle
+      where:
+        ref: left_inside_home
+        shift: [1px, 0]
+      radius: 2.5
+  _mounting_hole_7:
+    left:
+      what: circle
+      where:
+        ref: left_inside_number
+        shift: [0.5px, py]
+      radius: 2.5
+  _mounting_hole_8:
+    left:
+      what: circle
+      where:
+        ref: left_middle_top
+        shift: [-0.58px, -0.25py]
+      radius: 2.5
 pcbs:
   mrkeyboard_left:
     outlines:
@@ -596,8 +576,8 @@ pcbs:
       roller_encoder:
         what: scrollwheel
         where:
-          ref: left_thumb_tinside_tbottom
-          shift: [-2, 1.5ky]
+          ref: left_far_arrows
+          shift: [-1.5kx, 0]
         params:
           from: P9
           to: P19
@@ -609,13 +589,18 @@ pcbs:
         what: rotary
         where:
           ref: left_inside_bottom
-          shift: [1.5kx, -53]
+          shift: [1.5kx, 0]
         params:
           from: P9
           to: P19
           A: P8
           B: GND
           C: P12
+      hole1:
+        what: mountinghole
+        where:
+          ref: left_far_number
+          shift: [-px/2, py/2]
   mrkeyboard_right:
     outlines:
       right:
@@ -772,6 +757,39 @@ cases:
     - name: _all_cutouts_left
       operation: subtract
       extrude: 2.4
+  left_plate_test_print:
+    - name: combined_left
+      extrude: 1.3
+    - name: _all_cutouts_left_big
+      operation: subtract
+      extrude: 1.3
+    - name: _all_cutouts_left
+      operation: subtract
+      extrude: 1.4
+    - name: _mounting_hole_1
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_2
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_3
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_4
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_5
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_6
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_7
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_8
+      operation: add
+      extrude: 11.5
   left_base:
     - name: combined_left
       extrude: 5
@@ -781,11 +799,6 @@ cases:
     - name: combined_left
       operation: subtract
       extrude: 13
-#    - what: circle
-#      where: /^left_mount_.*/
-#      operation: subtract
-#      radius: 1.5
-#      extrude: 16
   right_plate:
     - name: combined_right
       extrude: 2.3
