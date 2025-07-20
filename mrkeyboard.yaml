@@ -160,7 +160,6 @@ points:
           rows:
             arrows:
               shift: [0.25,0]
-              skip: true
             bottom:
               led_next: L2827
               led_prev: L2128
@@ -196,21 +195,22 @@ points:
           rows:
             tbottom:
               splay: -60
-              shift: [-0,0]
+              rotate: 35
               row_net: P14
               led_next: L3435
               led_prev: L3334
             ttop:
-              shift: [0, 12]
+              skip: true
         tmiddle:
           rows:
             tbottom:
-              shift: [3,12.5]
+              shift: [3,6.5]
               row_net: P15
               led_next: L3536
               led_prev: L3435
             ttop:
-              shift: [0, 12]
+              rotate: 60
+              shift: [0, 20]
         toutside:
           rows:
             tbottom:
@@ -219,7 +219,8 @@ points:
               led_next:
               led_prev: L3536
             ttop:
-              shift: [0, 12]
+              rotate: 60
+              shift: [-6, 15]
       rows:
         tbottom:
   mirror: &mirror
@@ -318,14 +319,14 @@ outlines:
       where:
         ref: left_index_home
         shift: [-5.5kx, 0]
-      size: [16.79, 14]
+      size: [16.09, 14]
   _roller_encoder_left_big:
     left:
       what: rectangle
       where:
         ref: left_index_home
         shift: [-5.5kx, 0]
-      size: [16.79, 14]
+      size: [16.09, 14]
   _rotary_encoder_left:
     left:
       what: rectangle
@@ -407,14 +408,14 @@ outlines:
       what: circle
       where:
         ref: left_far_number
-        shift: [-.6px, .6py]
+        shift: [-0.6px, 0.6py]
       radius: 2.5
   _mounting_hole_2:
     left:
       what: circle
       where:
-        ref: left_far_bottom
-        shift: [-3px/4, -py/8]
+        ref: left_far_arrows
+        shift: [-0.65px, -0.6py]
       radius: 2.5
   _mounting_hole_3:
     left:
@@ -434,44 +435,65 @@ outlines:
     left:
       what: circle
       where:
-        ref: left_thumb_toutside_ttop
-        shift: [0, py/1.5]
+        ref: left_thumb_toutside_tbottom
+        shift: [0.6px, -0.6py]
       radius: 2.5
   _mounting_hole_6:
     left:
       what: circle
       where:
-        ref: left_inside_home
-        shift: [1px, 0]
+        ref: left_thumb_toutside_tbottom
+        shift: [0.65px, 1.65py]
       radius: 2.5
   _mounting_hole_7:
+    left:
+      what: circle
+      where:
+        ref: left_thumb_tmiddle_tbottom
+        shift: [-0.5px, py]
+      radius: 2.5
+  _mounting_hole_8:
+    left:
+      what: circle
+      where:
+        ref: left_inside_bottom
+        shift: [1.75px, 0]
+      radius: 2.5
+  _mounting_hole_9:
     left:
       what: circle
       where:
         ref: left_inside_number
         shift: [0.5px, py]
       radius: 2.5
-  _mounting_hole_8:
+  _mounting_hole_10:
     left:
       what: circle
       where:
         ref: left_middle_top
         shift: [-0.58px, -0.25py]
       radius: 2.5
-  _mounting_hole_9:
+  _mounting_hole_11:
     left:
       what: circle
       where:
         ref: left_index_home
         shift: [0.45px, 0.36py]
       radius: 2
-  _mounting_hole_10:
+  _mounting_hole_12:
     left:
       what: circle
       where:
         ref: left_index_home
         shift: [-6.13kx, 0]
       radius: 2
+  _mounting_hole_13:
+    left:
+      what: circle
+      where:
+        ref: left_middle_number
+        shift: [-0.75kx, 0.8ky]
+      radius: 2.5
 pcbs:
   mrkeyboard_left:
     outlines:
@@ -815,6 +837,15 @@ cases:
       operation: add
       extrude: 11.5
     - name: _mounting_hole_10
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_11
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_12
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_13
       operation: add
       extrude: 11.5
   left_base:
