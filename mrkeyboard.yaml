@@ -201,6 +201,7 @@ points:
               led_next: L3435
               led_prev: L3334
             ttop:
+              shift: [0, 12]
         tmiddle:
           rows:
             tbottom:
@@ -209,6 +210,7 @@ points:
               led_next: L3536
               led_prev: L3435
             ttop:
+              shift: [0, 12]
         toutside:
           rows:
             tbottom:
@@ -217,6 +219,7 @@ points:
               led_next:
               led_prev: L3536
             ttop:
+              shift: [0, 12]
       rows:
         tbottom:
   mirror: &mirror
@@ -228,12 +231,16 @@ outlines:
       points:
         - ref: left_far_number
           shift: [-px,py]
+        - ref: left_far_top
+          shift: [-px, py/4]
+        - ref: left_index_home
+          shift: [-6.3kx, py/2]
+        - ref: left_index_home
+          shift: [-6.3kx, -py/2]
         - ref: left_far_bottom
-          shift: [-px/1.1, 0]
+          shift: [-px,py/2]
         - ref: left_far_arrows
-          shift: [-2px,py/1.1]
-        - ref: left_far_arrows
-          shift: [-2px,-py]
+          shift: [-px,-py]
         - ref: left_middle_arrows
           shift: [0,-py]
         - ref: left_thumb_tmiddle_tbottom
@@ -309,30 +316,30 @@ outlines:
     left:
       what: rectangle
       where:
-        ref: left_far_arrows
-        shift: [-kx, 0]
-      size: [16.89, 14]
+        ref: left_index_home
+        shift: [-5.5kx, 0]
+      size: [16.79, 14]
   _roller_encoder_left_big:
     left:
       what: rectangle
       where:
-        ref: left_far_arrows
-        shift: [-kx, 0]
-      size: [16.89, 14]
+        ref: left_index_home
+        shift: [-5.5kx, 0]
+      size: [16.79, 14]
   _rotary_encoder_left:
     left:
       what: rectangle
       where:
         ref: left_inside_bottom
-        shift: [1.3kx, 0]
-      size: [14.75, 12]
+        shift: [24.625, 0]
+      size: [12.5, 12]
   _rotary_encoder_left_big:
     left:
       what: rectangle
       where:
         ref: left_inside_bottom
-        shift: [kx, 0]
-      size: [14.75, 12]
+        shift: [24.625, 0]
+      size: [12.5, 12]
   _all_cutouts_left:
     - name: _switch_cutouts_left
     - name: _roller_encoder_left
@@ -363,14 +370,14 @@ outlines:
       where:
         ref: mirror_left_inside_bottom
         shift: [1.5kx, -53]
-      size: [14.75, 12]
+      size: [12.5, 12]
   _rotary_encoder_right_big:
     left:
       what: rectangle
       where:
         ref: mirror_left_inside_bottom
         shift: [1.5kx, -53]
-      size: [14.75, 12]
+      size: [12.5, 12]
   _all_cutouts_right:
     - name: _switch_cutouts_right
     - name: _roller_encoder_right
@@ -428,7 +435,7 @@ outlines:
       what: circle
       where:
         ref: left_thumb_toutside_ttop
-        shift: [0, py]
+        shift: [0, py/1.5]
       radius: 2.5
   _mounting_hole_6:
     left:
@@ -451,6 +458,20 @@ outlines:
         ref: left_middle_top
         shift: [-0.58px, -0.25py]
       radius: 2.5
+  _mounting_hole_9:
+    left:
+      what: circle
+      where:
+        ref: left_index_home
+        shift: [0.45px, 0.36py]
+      radius: 2
+  _mounting_hole_10:
+    left:
+      what: circle
+      where:
+        ref: left_index_home
+        shift: [-6.13kx, 0]
+      radius: 2
 pcbs:
   mrkeyboard_left:
     outlines:
@@ -788,6 +809,12 @@ cases:
       operation: add
       extrude: 11.5
     - name: _mounting_hole_8
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_9
+      operation: add
+      extrude: 11.5
+    - name: _mounting_hole_10
       operation: add
       extrude: 11.5
   left_base:
