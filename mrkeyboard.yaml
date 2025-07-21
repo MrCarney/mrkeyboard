@@ -210,7 +210,7 @@ points:
               led_prev: L3435
             ttop:
               rotate: 60
-              shift: [0, 20]
+              shift: [-5, 23]
         toutside:
           rows:
             tbottom:
@@ -233,13 +233,13 @@ outlines:
         - ref: left_far_number
           shift: [-px,py]
         - ref: left_far_top
-          shift: [-px, py/4]
+          shift: [-px, py/4+7]
         - ref: left_index_home
-          shift: [-6.3kx, py/2]
+          shift: [-6.3kx, py/2+7]
         - ref: left_index_home
-          shift: [-6.3kx, -py/2]
+          shift: [-6.3kx, -py/2+7]
         - ref: left_far_bottom
-          shift: [-px,py/2]
+          shift: [-px,py/2+7]
         - ref: left_far_arrows
           shift: [-px,-py]
         - ref: left_middle_arrows
@@ -318,28 +318,28 @@ outlines:
       what: rectangle
       where:
         ref: left_index_home
-        shift: [-5.5kx, 0]
-      size: [16.09, 14]
+        shift: [-5.5kx, 7]
+      size: [16.5, 14]
   _roller_encoder_left_big:
     left:
       what: rectangle
       where:
         ref: left_index_home
-        shift: [-5.5kx, 0]
-      size: [16.09, 14]
+        shift: [-5.5kx, 7]
+      size: [16.5, 14]
   _rotary_encoder_left:
     left:
       what: rectangle
       where:
         ref: left_inside_bottom
-        shift: [24.625, 0]
+        shift: [26, 0]
       size: [12.5, 12]
   _rotary_encoder_left_big:
     left:
       what: rectangle
       where:
         ref: left_inside_bottom
-        shift: [24.625, 0]
+        shift: [26, 0]
       size: [12.5, 12]
   _all_cutouts_left:
     - name: _switch_cutouts_left
@@ -414,86 +414,86 @@ outlines:
     left:
       what: circle
       where:
+        ref: left_index_home
+        shift: [-6.13kx, 7]
+      radius: 2
+  _mounting_hole_3:
+    left:
+      what: circle
+      where:
         ref: left_far_arrows
         shift: [-0.65px, -0.6py]
       radius: 2.5
-  _mounting_hole_3:
+  _mounting_hole_4:
     left:
       what: circle
       where:
         ref: left_middle_arrows
         shift: [0, -0.7py]
       radius: 2.5
-  _mounting_hole_4:
+  _mounting_hole_5:
     left:
       what: circle
       where:
         ref: left_thumb_tmiddle_tbottom
         shift: [0, -0.7py]
       radius: 2.5
-  _mounting_hole_5:
+  _mounting_hole_6:
     left:
       what: circle
       where:
         ref: left_thumb_toutside_tbottom
         shift: [0.6px, -0.6py]
       radius: 2.5
-  _mounting_hole_6:
+  _mounting_hole_7:
     left:
       what: circle
       where:
         ref: left_thumb_toutside_tbottom
         shift: [0.65px, 1.65py]
       radius: 2.5
-  _mounting_hole_7:
+  _mounting_hole_8:
     left:
       what: circle
       where:
         ref: left_thumb_tmiddle_tbottom
         shift: [-0.5px, py]
       radius: 2.5
-  _mounting_hole_8:
+  _mounting_hole_9:
     left:
       what: circle
       where:
         ref: left_inside_bottom
         shift: [1.75px, 0]
       radius: 2.5
-  _mounting_hole_9:
+  _mounting_hole_10:
     left:
       what: circle
       where:
         ref: left_inside_number
         shift: [0.5px, py]
       radius: 2.5
-  _mounting_hole_10:
-    left:
-      what: circle
-      where:
-        ref: left_middle_top
-        shift: [-0.58px, -0.25py]
-      radius: 2.5
   _mounting_hole_11:
-    left:
-      what: circle
-      where:
-        ref: left_index_home
-        shift: [0.45px, 0.36py]
-      radius: 2
-  _mounting_hole_12:
-    left:
-      what: circle
-      where:
-        ref: left_index_home
-        shift: [-6.13kx, 0]
-      radius: 2
-  _mounting_hole_13:
     left:
       what: circle
       where:
         ref: left_middle_number
         shift: [-0.75kx, 0.8ky]
       radius: 2.5
+  _mounting_hole_12:
+    left:
+      what: circle
+      where:
+        ref: left_middle_top
+        shift: [-0.58px, -0.25py]
+      radius: 2.5
+  _mounting_hole_13:
+    left:
+      what: circle
+      where:
+        ref: left_index_home
+        shift: [0.45px, 0.36py]
+      radius: 2
 pcbs:
   mrkeyboard_left:
     outlines:
